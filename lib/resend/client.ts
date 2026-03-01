@@ -15,7 +15,7 @@ export async function sendWelcomeEmail(
   try {
     const resend = getResendClient();
     await resend.emails.send({
-      from: "Redraft.AI <noreply@redraft.ai>",
+      from: "Redraft.AI <noreply@redraft.fr>",
       to,
       subject: "Bienvenue sur Redraft.AI !",
       html: getWelcomeEmailTemplate(userName),
@@ -35,7 +35,7 @@ export async function sendProjectUnlockedEmail(
   try {
     const resend = getResendClient();
     await resend.emails.send({
-      from: "Redraft.AI <noreply@redraft.ai>",
+      from: "Redraft.AI <noreply@redraft.fr>",
       to,
       subject: `Votre landing page "${projectName}" est déverrouillée !`,
       html: getProjectUnlockedEmailTemplate(userName, projectName, projectId),
@@ -54,7 +54,7 @@ export async function sendFeedbackRequestEmail(
   try {
     const resend = getResendClient();
     await resend.emails.send({
-      from: "Redraft.AI <noreply@redraft.ai>",
+      from: "Redraft.AI <noreply@redraft.fr>",
       to,
       subject: "Comment s'est passée votre expérience ?",
       html: getFeedbackRequestEmailTemplate(userName, projectName),

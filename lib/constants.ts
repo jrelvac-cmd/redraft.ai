@@ -96,6 +96,6 @@ export const SOCIAL_LINKS = {
   github: "https://github.com/redraft-ai",
 };
 
-export const SUPPORT_EMAIL = "support@redraft.ai";
-export const LEGAL_EMAIL = "legal@redraft.ai";
-export const PRIVACY_EMAIL = "privacy@redraft.ai";
+export const SUPPORT_EMAIL = "support@redraft.fr";
+export const LEGAL_EMAIL = "support@redraft.fr";
+export const PRIVACY_EMAIL = "support@redraft.fr";
