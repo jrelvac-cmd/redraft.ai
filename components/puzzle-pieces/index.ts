@@ -1,0 +1,9 @@
+export { HeroCentered } from "./HeroCentered";
+export { HeroSplit } from "./HeroSplit";
+export { HeroFullWidth } from "./HeroFullWidth";
+export { Features } from "./Features";
+export { PainPoints } from "./PainPoints";
+export { SocialProof } from "./SocialProof";
+export { FAQ } from "./FAQ";
+export { CTASection } from "./CTASection";
+export { FooterSection } from "./FooterSection";
