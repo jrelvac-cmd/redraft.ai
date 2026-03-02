@@ -4,16 +4,20 @@
 Redraft.AI est un générateur de landing pages haute performance pour SaaS et startups, propulsé par l'IA. Il combine Claude 3.5 Sonnet et GPT-4o pour générer des pages complètes avec copywriting optimisé et du code Next.js prêt à déployer.
 
 ## Dernière mise à jour
-**03 mars 2026** - Refonte complète de la landing page avec design inspiré de relume.io
-- Modernisation du design avec gradients et animations fluides
-- Navigation fixe avec backdrop blur
-- Hero section avec gradient text
-- Section "How it works" avec 3 étapes claires
-- Features grid moderne
-- Social proof avec testimonials
-- FAQ améliorée
-- Footer avec structure multi-colonnes
-- Utilisation complète de Framer Motion pour les animations
+**03 mars 2026** - Refonte majeure "Giga Prompt" de la landing page (FR)
+- Implémentation complète du design "Relume-style" adapté à Redraft.ai
+- Découpage modulaire en composants React (`components/landing/`)
+- Animations Framer Motion soignées (typing effect, stagger, scroll reveal)
+- Contenu 100% en français orienté conversion
+- Sections clés :
+  - **Hero**: Animation de terminal/preview interactive
+  - **Process**: 4 étapes claires avec icônes
+  - **Features**: Blocks "Structure / Copy / Design System"
+  - **Personas**: Cible Fondateurs / Devs / Agences
+  - **Export**: Mise en avant de la stack Next.js/TS/Tailwind
+  - **Comparison**: Redraft vs Generic Builders
+  - **Final CTA**: Appel à l'action impactant
+- Code propre et maintenable avec Shadcn/UI et Lucide Icons
 
 ## Stack Technique
 
