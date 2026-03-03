@@ -6,7 +6,6 @@ import {
   getGeneratePagePrompt,
 } from "@/lib/ai/prompts";
 import { extractDesignTokens } from "@/lib/ai/extractDesignTokens";
-import { getSkeletonsInfo } from "@/components/skeletons";
 import type { AIGeneratedData } from "@/types";
 
 export async function POST(request: NextRequest) {
@@ -50,17 +49,7 @@ export async function POST(request: NextRequest) {
 
     inputData.designTokens = designTokens;
 
-    // Add skeleton information to the prompt
-    const skeletonsInfo = getSkeletonsInfo();
-    const skeletonsContext = `
-
-AVAILABLE SKELETONS FOR SELECTION:
-${JSON.stringify(skeletonsInfo, null, 2)}
-
-Select which skeleton best matches the product based on description and features.
-The L'IA will use this skeleton to structure the page.`;
-
-    const userPrompt = getGeneratePagePrompt(inputData) + skeletonsContext;
+    const userPrompt = getGeneratePagePrompt(inputData);
 
     const response = await generateWithClaude(
       SYSTEM_PROMPT_GENERATE_PAGE,

@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { generateWithClaude } from "@/lib/ai/claude";
 import { SYSTEM_PROMPT_SELECT_SKELETON } from "@/lib/ai/prompts";
-import { getSkeletonsInfo } from "@/components/skeletons";
 
 export async function POST(request: NextRequest) {
   try {
@@ -21,9 +20,6 @@ Product Name: ${productName || "Unknown"}
 Description: ${description}
 Objective: ${objective || "general"}
 Target Audience: ${targetAudience || "general"}
-
-Available Skeletons:
-${JSON.stringify(getSkeletonsInfo(), null, 2)}
 
 Choose the skeleton that best fits this product's needs.`;
 
