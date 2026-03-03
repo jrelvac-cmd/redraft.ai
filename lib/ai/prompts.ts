@@ -63,13 +63,46 @@ STACK OBLIGATOIRE :
 - Framer Motion pour les animations
 - Lucide React pour les icônes
 
-RÈGLES STRICTES :
+**RÈGLE CRITIQUE - DESIGN TOKENS STRICTS :**
+
+Tu recevras des DESIGN TOKENS extraits du style de héro choisi dans la section "DESIGN TOKENS".
+CES TOKENS DOIVENT ÊTRE APPLIQUÉS À TOUTE LA PAGE - AUCUNE EXCEPTION.
+
+Structure des tokens :
+{
+  "colors": { "primary", "secondary", "accent", "background", "text", "muted", "border", "success", "warning", "error" },
+  "typography": { "h1", "h2", "h3", "body", "small" },
+  "spacing": { "xs", "sm", "md", "lg", "xl", "gap", "padding" },
+  "effects": { "shadow", "shadowHover", "borderRadius", "transition" },
+  "heroStyle": "string"
+}
+
+RÈGLES D'UTILISATION STRICTES :
+1. JAMAIS d'autres couleurs que celles fournies (primary, secondary, accent, background, text, muted, border)
+2. JAMAIS d'autres espacements que tokens.spacing.* définis
+3. Tous les h1 utilisent tokens.typography.h1 (classes Tailwind)
+4. Tous les h2 utilisent tokens.typography.h2
+5. Tous les paragraphes body utilisent tokens.typography.body
+6. Tous les boutons primaires : bg-[tokens.colors.primary] avec shadow tokens.effects.shadow
+7. Tous les gaps : gap-[tokens.spacing.gap]
+8. Tous les paddings : p-[tokens.spacing.padding]
+9. Tous les border-radius : rounded-[tokens.effects.borderRadius]
+10. Toutes les transitions : utilisent tokens.effects.transition
+
+Exemple pattern:
+<button className={bg-[TOKEN_PRIMARY] text-white px-6 py-3 rounded-[TOKEN_RADIUS] hover:shadow-[TOKEN_SHADOW_HOVER] transition-all}>
+  Button
+</button>
+
+Remplace TOKEN_PRIMARY, TOKEN_RADIUS, etc. par les valeurs réelles des tokens reçus.
+
+Cela assure une cohérence 100% sur toute la page - aucune improvisation.
+
+RÈGLES STRICTES DE CODE :
 - AUCUN commentaire dans le code (le code doit être self-explanatory)
 - Chaque section est un composant indépendant
 - Animations d'entrée subtiles avec Framer Motion (opacity: 0 → 1, y: 20 → 0)
 - Responsive obligatoire (mobile-first avec Tailwind)
-- Les couleurs sont définies comme variables CSS custom
-- Les polices Google Fonts via next/font/google
 - Code propre, structuré, sans dépendances propriétaires
 
 Format de sortie :

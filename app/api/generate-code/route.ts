@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { generateWithClaude } from "@/lib/ai/claude";
 import { SYSTEM_PROMPT_GENERATE_CODE } from "@/lib/ai/prompts";
+import { extractDesignTokens } from "@/lib/ai/extractDesignTokens";
 
 export async function POST(request: NextRequest) {
   try {
@@ -45,7 +46,15 @@ export async function POST(request: NextRequest) {
     const inputData = project.input_data || {};
     const aiData = project.ai_data;
 
+    const designTokens = extractDesignTokens(
+      inputData.heroVariant || "default",
+      inputData
+    );
+
     const userPrompt = `Génère le code Next.js 15 complet pour cette landing page :
+
+DESIGN TOKENS (À UTILISER STRICTEMENT) :
+${JSON.stringify(designTokens, null, 2)}
 
 DONNÉES AI GÉNÉRÉES :
 ${JSON.stringify(aiData, null, 2)}
@@ -56,7 +65,10 @@ CONFIGURATION DESIGN :
 - Police : ${inputData.font || "Inter"}
 - Hero variant : ${inputData.heroVariant || "v1"}
 
-RÈGLES :
+RÈGLES ABSOLUES :
+- Utilise UNIQUEMENT les couleurs des design tokens
+- Utilise UNIQUEMENT les espacements des design tokens
+- Utilise UNIQUEMENT la typographie des design tokens
 - Code production-ready
 - Aucun commentaire
 - Responsive mobile-first
@@ -65,7 +77,7 @@ RÈGLES :
 - Tailwind CSS uniquement
 
 Génère tous les fichiers nécessaires :
-1. app/page.tsx (page principale)
+1. app/page.tsx (page principale avec tokens.heroStyle)
 2. components/Hero.tsx
 3. components/Features.tsx
 4. components/PainPoints.tsx
@@ -110,7 +122,7 @@ Sépare chaque fichier avec : // === FICHIER: path/to/file.tsx ===`;
     const { error: updateError } = await supabase
       .from("projects")
       .update({
-        code_data: { files },
+        code_data: { files, designTokens },
         updated_at: new Date().toISOString(),
       })
       .eq("id", projectId);
@@ -119,7 +131,7 @@ Sépare chaque fichier avec : // === FICHIER: path/to/file.tsx ===`;
       console.error("Failed to update project:", updateError);
     }
 
-    return NextResponse.json({ files });
+    return NextResponse.json({ files, designTokens });
   } catch (error) {
     console.error("Error generating code:", error);
     return NextResponse.json(

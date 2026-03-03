@@ -142,3 +142,48 @@ export interface CodeFile {
   content: string;
   language: string;
 }
+
+export interface DesignTokens {
+  colors: {
+    primary: string;
+    secondary: string;
+    accent: string;
+    background: string;
+    text: string;
+    muted: string;
+    border: string;
+    success?: string;
+    warning?: string;
+    error?: string;
+  };
+  typography: {
+    h1: string;
+    h2: string;
+    h3: string;
+    body: string;
+    small: string;
+    fontFamily?: string;
+    fontWeights?: {
+      regular: number;
+      semibold: number;
+      bold: number;
+    };
+  };
+  spacing: {
+    xs: string;
+    sm: string;
+    md: string;
+    lg: string;
+    xl: string;
+    gap: string;
+    padding: string;
+  };
+  effects: {
+    shadow: string;
+    shadowHover?: string;
+    borderRadius: string;
+    transition?: string;
+  };
+  heroStyle?: string;
+  layout?: string;
+}

@@ -4,20 +4,15 @@
 Redraft.AI est un générateur de landing pages haute performance pour SaaS et startups, propulsé par l'IA. Il combine Claude 3.5 Sonnet et GPT-4o pour générer des pages complètes avec copywriting optimisé et du code Next.js prêt à déployer.
 
 ## Dernière mise à jour
-**03 mars 2026** - Refonte majeure "Giga Prompt" de la landing page (FR)
-- Implémentation complète du design "Relume-style" adapté à Redraft.ai
-- Découpage modulaire en composants React (`components/landing/`)
-- Animations Framer Motion soignées (typing effect, stagger, scroll reveal)
-- Contenu 100% en français orienté conversion
-- Sections clés :
-  - **Hero**: Animation de terminal/preview interactive
-  - **Process**: 4 étapes claires avec icônes
-  - **Features**: Blocks "Structure / Copy / Design System"
-  - **Personas**: Cible Fondateurs / Devs / Agences
-  - **Export**: Mise en avant de la stack Next.js/TS/Tailwind
-  - **Comparison**: Redraft vs Generic Builders
-  - **Final CTA**: Appel à l'action impactant
-- Code propre et maintenable avec Shadcn/UI et Lucide Icons
+**03 mars 2026** - Système de Design Tokens pour cohérence IA
+- Implémentation du système d'extraction de design tokens
+- 4 styles de héro pré-configurés (Dark, Gradient, Minimal, Playful)
+- Tokens appliqués strictement à toute la page générée
+- Cohérence 100% garantie entre héro et autres sections
+- L'IA ne peut plus générer des pages incohérentes visuellement
+- API endpoint `/api/extract-design-tokens` pour extraire les tokens
+- Tokens passés au prompt Claude/GPT pour génération de code cohérente
+- Nouvelle structure: tokens → design → code
 
 ## Stack Technique
 
@@ -63,26 +58,123 @@ Redraft.AI est un générateur de landing pages haute performance pour SaaS et s
 - `/api/projects` : CRUD des projets
 - `/api/affiliate` : Statistiques d'affiliation
 
-## Design System
+## Design System & Design Tokens
 
-### Palette de couleurs (mise à jour 2026)
-- **Primaire**: Blue-600 (#2563EB)
-- **Secondaire**: Blue-400 (#60A5FA) 
-- **Fond**: Blanc pur (#FFFFFF)
-- **Gris**: Palette complète de gray-50 à gray-900
-- **Accents**: Yellow pour les ratings (★)
+### Architecture Design Tokens (NEW)
 
-### Typographie
-- **Headlines**: Font-bold, 5xl-7xl
-- **Subheadings**: 2xl-4xl
-- **Body**: Regular, 16-18px
-- **Labels**: Small, font-semibold
+Pour garantir la cohérence visuelle de chaque landing page générée, le système utilise un **Design Token System** :
 
-### Spacing & Layout
-- Container max-width: 5xl (64rem)
-- Section padding: py-20 md:py-32
-- Gaps: 8px (gap-2), 12px (gap-3), 16px (gap-4), 32px (gap-8)
-- Border radius: 2xl (1rem) pour les cartes, xl (0.75rem) pour les inputs
+```
+1. UTILISATEUR CHOISIT UN STYLE
+   ↓
+2. SYSTÈME EXTRAIT LES TOKENS
+   (couleurs, typographie, spacing, effets)
+   ↓
+3. L'IA REÇOIT LES TOKENS
+   ↓
+4. L'IA GÉNÈRE TOUTE LA PAGE AVEC CES TOKENS
+   ↓
+RÉSULTAT: Page 100% cohérente visuellement
+```
+
+### Styles de Héros Disponibles
+
+| Style | Palette | Usage |
+|-------|---------|-------|
+| **Dark** | Bleu clair sur fond sombre | Tech, premium, B2B |
+| **Gradient** | Purple-to-Pink avec gradient | Créatif, modern, startup |
+| **Minimal** | Noir sur blanc, épuré | Minimaliste, professionnel |
+| **Playful** | Rose/Magenta, accessible | Fun, social, consumer |
+
+### Structure des Tokens
+
+Chaque style génère ces tokens :
+
+```typescript
+{
+  colors: {
+    primary: "#hex",        // Couleur dominante
+    secondary: "#hex",      // Couleur secondaire
+    accent: "#hex",         // Couleur accent CTA
+    background: "#hex",     // Fond page
+    text: "#hex",           // Texte principal
+    muted: "#hex",          // Fond secondaire (sections)
+    border: "#hex",         // Couleurs borders
+  },
+  typography: {
+    h1: "text-7xl font-bold",  // Headlines principales
+    h2: "text-5xl font-bold",  // Sous-headings
+    h3: "text-3xl font-semibold",
+    body: "text-lg text-gray-600",
+    small: "text-sm text-gray-500",
+  },
+  spacing: {
+    xs: "4px",
+    sm: "8px",
+    md: "16px",
+    lg: "24px",
+    xl: "32px",
+    gap: "24px",      // Gap entre sections
+    padding: "32px",  // Padding standard
+  },
+  effects: {
+    shadow: "0 10px 25px rgba(...)",
+    shadowHover: "0 20px 40px rgba(...)",
+    borderRadius: "12px",
+    transition: "all 0.3s ease",
+  }
+}
+```
+
+### Flux de Génération avec Tokens
+
+**Étape 1: Extract (Backend)**
+```typescript
+// app/api/generate-page/route.ts
+const designTokens = extractDesignTokens(heroVariant, inputData);
+// Résultat: tokens complets pour le style choisi
+```
+
+**Étape 2: Prompt (Claude/GPT)**
+```typescript
+const userPrompt = `
+DESIGN TOKENS:
+${JSON.stringify(designTokens)}
+
+RÈGLE STRICTE:
+- Utilise UNIQUEMENT tokens.colors.primary pour les boutons
+- Utilise UNIQUEMENT tokens.spacing.gap pour tous les gaps
+- Utilise UNIQUEMENT tokens.typography.h1 pour les titres
+// etc.
+`;
+```
+
+**Étape 3: Génération (Code Généré)**
+```typescript
+// L'IA génère du code comme ça:
+<div className={`gap-[${tokens.spacing.gap}] p-[${tokens.spacing.padding}]`}>
+  <h1 className={tokens.typography.h1}>Titre</h1>
+  <button className={`bg-[${tokens.colors.primary}] shadow-[${tokens.effects.shadow}]`}>
+    CTA
+  </button>
+</div>
+```
+
+### API Endpoints
+
+| Endpoint | Méthode | Utilité |
+|----------|---------|---------|
+| `/api/extract-design-tokens` | POST | Extrait tokens d'un style |
+| `/api/generate-page` | POST | Génère landing JSON + tokens |
+| `/api/generate-code` | POST | Génère code React avec tokens |
+
+### Bénéfices du Design Token System
+
+✅ **Cohérence garantie** - Aucune couleur/spacing aléatoire
+✅ **Flexibilité** - Ajouter un nouveau style = nouveau token set
+✅ **Scalabilité** - L'IA peut générer infinies pages cohérentes
+✅ **Maintenabilité** - Change un token = toute la page change
+✅ **UX** - Pages générées ressemblent à du vrai design, pas de l'IA
 
 ## Sections de la Landing Page
 

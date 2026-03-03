@@ -5,6 +5,7 @@ import {
   SYSTEM_PROMPT_GENERATE_PAGE,
   getGeneratePagePrompt,
 } from "@/lib/ai/prompts";
+import { extractDesignTokens } from "@/lib/ai/extractDesignTokens";
 import type { AIGeneratedData } from "@/types";
 
 export async function POST(request: NextRequest) {
@@ -40,6 +41,14 @@ export async function POST(request: NextRequest) {
     }
 
     const inputData = project.input_data || {};
+    
+    const designTokens = extractDesignTokens(
+      inputData.heroVariant || "default",
+      inputData
+    );
+
+    inputData.designTokens = designTokens;
+
     const userPrompt = getGeneratePagePrompt(inputData);
 
     const response = await generateWithClaude(
@@ -68,6 +77,7 @@ export async function POST(request: NextRequest) {
       .from("projects")
       .update({
         ai_data: aiData,
+        input_data: inputData,
         status: "preview",
         updated_at: new Date().toISOString(),
       })
@@ -81,7 +91,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    return NextResponse.json({ aiData });
+    return NextResponse.json({ aiData, designTokens });
   } catch (error) {
     console.error("Error generating page:", error);
     return NextResponse.json(

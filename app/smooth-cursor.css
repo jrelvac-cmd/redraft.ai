@@ -1,0 +1,10 @@
+/* Smooth Cursor - Landing Page */
+main.cursor-none * {
+  cursor: none !important;
+}
+
+main.cursor-none input,
+main.cursor-none textarea,
+main.cursor-none select {
+  cursor: text !important;
+}
