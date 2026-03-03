@@ -1,0 +1,56 @@
+---
+description: Documentation strategy - update context.md instead of creating new files
+alwaysApply: true
+---
+
+# Documentation Strategy
+
+## Core Principle
+Minimize token usage by updating existing documentation files instead of creating new ones.
+
+## Rules
+
+### 1. Update Instead of Create
+- **Update `context.md`** whenever changes are made to the project
+- Do NOT create new `.md` files for regular implementation updates
+- This preserves token efficiency and keeps documentation centralized
+
+### 2. When to Create a New Guide
+Create a new `.md` file ONLY when:
+- The content is a **step-by-step manual guide** that the user must perform themselves
+- It contains actionable instructions for tasks outside the codebase (e.g., Vercel setup, environment configuration)
+- The guide is too long or complex to fit in `context.md`
+
+Examples of guides that warrant new files:
+- `MANUAL_SETUP_GUIDE.md` - Steps for local environment setup
+- `DEPLOYMENT_CHECKLIST.md` - Pre-production deployment steps
+- `DATABASE_MIGRATION_GUIDE.md` - Manual database operations
+
+### 3. Context.md Updates
+When modifying `context.md`:
+- Update existing sections with new information
+- Add new sections only if necessary
+- Keep the structure organized and readable
+- Include timestamps or version notes for significant changes
+
+### 4. Implementation Documentation
+For code changes:
+- Update relevant sections in `context.md` only
+- No separate implementation summary files unless explicitly requested
+- Keep inline code comments minimal (only for non-obvious intent)
+
+## Example
+
+❌ **Don't do this:**
+```
+- Create "FEATURE_A_IMPLEMENTATION.md"
+- Create "DATABASE_CHANGES.md"
+- Create "API_UPDATES.md"
+```
+
+✅ **Do this instead:**
+```
+- Update "context.md" with all changes
+- Organize sections clearly (Features, Database, API, etc.)
+- Add a summary at the top for quick reference
+```

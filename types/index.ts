@@ -30,6 +30,7 @@ export interface Project {
   ai_data?: AIGeneratedData;
   code_data?: Record<string, any>;
   thumbnail_url?: string;
+  skeleton_id?: string;
   created_at: string;
   updated_at: string;
 }
