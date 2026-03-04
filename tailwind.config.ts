@@ -92,7 +92,7 @@ const config: Config = {
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate"), function({ addBase, theme }) {
+  plugins: [require("tailwindcss-animate"), function({ addBase, theme }: any) {
     addBase({
       ".font-semibold, .font-bold": {
         letterSpacing: "0.5px"
