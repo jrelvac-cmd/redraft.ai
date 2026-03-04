@@ -107,7 +107,7 @@ export default function ComingSoon() {
             alt="Redraft.AI" 
             width={32} 
             height={32}
-            className="w-6 sm:w-8 h-6 sm:h-8"
+            className="w-6 sm:w-8 md:w-8 h-6 sm:h-8 md:h-8"
           />
         </div>
 
@@ -117,14 +117,14 @@ export default function ComingSoon() {
         </div>
 
         {/* Content Layer */}
-        <div className="relative z-20 flex flex-col items-center justify-center space-y-4 sm:space-y-6 max-w-2xl px-4 sm:px-6">
+        <div className="relative z-20 flex flex-col items-center justify-center space-y-4 sm:space-y-6 md:space-y-3 max-w-2xl px-4 sm:px-6 md:px-4">
           {/* Main Title with Animation and Gradient */}
           <motion.span 
             key={language}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="pointer-events-none text-center text-3xl sm:text-5xl md:text-7xl lg:text-9xl font-semibold leading-tight sm:leading-none break-words bg-gradient-to-b from-white to-white/5 bg-clip-text text-transparent pb-2 sm:pb-4"
+            className="pointer-events-none text-center text-3xl sm:text-5xl md:text-9xl font-semibold leading-tight md:leading-none md:whitespace-nowrap bg-gradient-to-b from-white to-white/5 bg-clip-text text-transparent pb-2 sm:pb-4"
           >
             {t.comingSoonTitle}
           </motion.span>
@@ -158,14 +158,14 @@ export default function ComingSoon() {
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-3">
                 <div className="flex-1 relative">
-                  <Mail className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 h-4 sm:h-5 w-4 sm:w-5 text-white z-10 pointer-events-none" />
+                  <Mail className="absolute left-3 sm:left-4 md:left-4 top-1/2 transform -translate-y-1/2 h-4 sm:h-5 md:h-5 w-4 sm:w-5 md:w-5 text-white z-10 pointer-events-none" />
                   <input
                     type="email"
                     placeholder={t.emailPlaceholder}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-2 sm:py-3 border border-white/20 rounded-lg bg-white/10 backdrop-blur-sm text-sm sm:text-base text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all"
+                    className="w-full pl-10 sm:pl-12 md:pl-12 pr-3 sm:pr-4 md:pr-4 py-2 sm:py-3 md:py-3 border border-white/20 rounded-lg bg-white/10 backdrop-blur-sm text-sm sm:text-base md:text-base text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all"
                   />
                 </div>
                 <GlowButton
@@ -183,7 +183,7 @@ export default function ComingSoon() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.3 }}
-            className="text-xs sm:text-sm text-white/60 mt-2 sm:mt-3"
+            className="text-xs sm:text-sm md:text-sm text-white/60 mt-2 sm:mt-3 md:mt-3"
           >
             {t.comingSoonCopyright}
           </motion.p>
