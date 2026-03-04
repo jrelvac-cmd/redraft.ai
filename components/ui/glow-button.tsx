@@ -6,10 +6,11 @@ interface ComponentProps {
   label?: string;
   onClick?: (e?: React.FormEvent) => void | Promise<void>;
   className?: string;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 export const GlowButton = forwardRef<HTMLButtonElement, ComponentProps>(
-  ({ label = "Generate", onClick, className }, ref) => {
+  ({ label = "Generate", onClick, className, type = "button" }, ref) => {
     const [isClicked, setIsClicked] = useState(false);
 
     const handleClick = async (e?: React.FormEvent) => {
@@ -21,7 +22,7 @@ export const GlowButton = forwardRef<HTMLButtonElement, ComponentProps>(
     return (
       <button
         ref={ref}
-        type="button"
+        type={type}
         aria-label={label}
         className={cn("glow-btn", className)}
         onClick={handleClick}

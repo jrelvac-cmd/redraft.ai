@@ -170,7 +170,7 @@ export default function ComingSoon() {
                 </div>
                 <GlowButton
                   label={isLoading ? t.notifying : t.notifyMe}
-                  onClick={handleSubmit}
+                  type="submit"
                   className="w-full"
                 />
               </form>
