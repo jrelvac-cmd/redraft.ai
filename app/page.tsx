@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import {
   Sparkles,
   ArrowRight,
@@ -19,7 +20,11 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
 import { SmoothCursor } from "@/components/ui/smooth-cursor";
+import { LanguageToggle } from "@/components/language-toggle";
+import { translations } from "@/lib/translations";
 import "./smooth-cursor.css";
+
+type Language = "fr" | "en";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -39,7 +44,10 @@ const staggerContainer = {
 export default function Home() {
   const [description, setDescription] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [language, setLanguage] = useState<Language>("fr");
   const router = useRouter();
+  
+  const t = translations[language];
 
   const handleStart = () => {
     setIsLoading(true);
@@ -55,22 +63,24 @@ export default function Home() {
     <main className="min-h-screen bg-white text-[#0f172a] overflow-x-hidden cursor-none">
       <SmoothCursor />
 
-      <nav className="sticky top-0 z-50 border-b border-black/10 bg-white/85 backdrop-blur-xl">
-        <div className="mx-auto flex h-20 max-w-[1200px] items-center justify-between px-4 md:px-8">
-          <div className="flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-[#2864ff]" />
-            <span className="text-lg font-semibold tracking-tight">Redraft.AI</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <Link href="/auth/login" className="text-sm text-slate-600 hover:text-slate-900">
-              Connexion
-            </Link>
-            <Link
-              href="/auth/signup"
-              className="rounded-lg bg-[#2864ff] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#1d4fe0]"
-            >
-              Commencer
-            </Link>
+      <nav className="sticky top-0 z-50 pt-4 pb-4">
+        <div className="mx-auto max-w-[1200px] px-4 md:px-8">
+          <div className="mx-auto flex h-16 max-w-fit items-center justify-between gap-8 rounded-full border border-black/10 bg-white/95 px-6 md:px-8 shadow-sm backdrop-blur-xl">
+            <div className="flex items-center gap-2">
+              <Image src="/redraft-logo.svg" alt="Redraft.AI" width={40} height={40} />
+            </div>
+            <div className="flex items-center gap-3">
+              <LanguageToggle onLanguageChange={setLanguage} />
+              <Link href="/auth/login" className="text-sm text-slate-600 hover:text-slate-900">
+                {t.connexion}
+              </Link>
+              <Link
+                href="/auth/signup"
+                className="rounded-lg bg-[#2864ff] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#1d4fe0]"
+              >
+                {t.commencer}
+              </Link>
+            </div>
           </div>
         </div>
       </nav>
@@ -82,46 +92,41 @@ export default function Home() {
               <div className="inline-flex items-center gap-2 rounded-full border border-[#bed0ff] bg-[#edf3ff] px-4 py-2">
                 <AnimatedShinyText className="inline-flex items-center gap-2 text-sm font-medium text-[#1d4fe0]">
                   <Sparkles className="h-4 w-4" />
-                  Propulsé par Claude 3.5 Sonnet + GPT-4o
+                  {t.powereredBy}
                 </AnimatedShinyText>
               </div>
-              <p className="text-sm font-medium text-[#2864ff]">Pour fondateurs SaaS et équipes produit</p>
+              <p className="text-sm font-medium text-[#2864ff]">{t.forFounders}</p>
               <h1 className="text-5xl font-semibold leading-[1.05] tracking-tight md:text-7xl">
-                Prompt vers
-                <br />
-                code landing
-                <br />
-                prêt à shipper
+                {t.heroTitle}
               </h1>
               <p className="max-w-xl text-lg text-slate-600">
-                Redraft transforme votre idée en landing Next.js/Tailwind performante. Répondez au tunnel intelligent,
-                éditez visuellement, exportez du code propre.
+                {t.heroDescription}
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link
                   href="/auth/signup"
                   className="inline-flex items-center gap-2 rounded-lg bg-[#2864ff] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1d4fe0]"
                 >
-                  Créer ma première landing <ArrowRight className="h-4 w-4" />
+                  {t.createFirstLanding} <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
                   href="/generator"
                   className="rounded-lg border border-black/15 px-5 py-3 text-sm font-semibold text-slate-800 transition hover:bg-slate-100"
                 >
-                  Voir la démo
+                  {t.seeDemo}
                 </Link>
               </div>
-              <p className="text-sm text-slate-500">No lock-in. Vous possédez 100% du code.</p>
+              <p className="text-sm text-slate-500">{t.noLockIn}</p>
             </motion.div>
 
             <motion.div variants={fadeInUp} className="rounded-3xl border border-black/10 bg-white p-8 shadow-[0_30px_90px_rgba(15,23,42,0.08)]">
               <div className="mb-6 flex items-center justify-between text-xs text-slate-500">
                 <span>Prompt</span>
-                <span className="rounded-full bg-emerald-50 px-2 py-1 text-emerald-700">Live Preview</span>
+                <span className="rounded-full bg-emerald-50 px-2 py-1 text-emerald-700">{t.livePreview}</span>
               </div>
               <div className="grid gap-5 md:grid-cols-2">
                 <div className="rounded-2xl border border-black/10 bg-slate-50 p-4">
-                  <p className="mb-3 text-xs text-slate-500">Questions IA</p>
+                  <p className="mb-3 text-xs text-slate-500">{t.questionsAI}</p>
                   <div className="space-y-2 text-sm text-slate-700">
                     <p className="rounded-xl bg-white px-3 py-2">Audience cible ?</p>
                     <p className="rounded-xl bg-white px-3 py-2">Objectif principal ?</p>
@@ -129,7 +134,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="rounded-2xl border border-black/10 bg-gradient-to-b from-white to-slate-50 p-4">
-                  <p className="mb-3 text-xs text-slate-500">Hero généré</p>
+                  <p className="mb-3 text-xs text-slate-500">{t.heroGenerated}</p>
                   <div className="space-y-2">
                     <div className="h-3 w-3/4 rounded bg-slate-900" />
                     <div className="h-2 w-full rounded bg-slate-300" />
@@ -144,12 +149,12 @@ export default function Home() {
           <motion.div variants={fadeInUp} initial="initial" animate="animate" className="mx-auto mt-16 max-w-2xl">
             <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
               <label className="block text-left text-sm font-semibold text-gray-900 mb-4">
-                Décrivez votre SaaS
+                {t.describeSaaS}
               </label>
               <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                placeholder="Ex: Un outil qui transforme les réunions Zoom en résumés actionnables pour les managers..."
+                placeholder={t.exampleDescription}
                 className="w-full h-28 px-4 py-3 border border-gray-200 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-400 cursor-text"
               />
               <button
@@ -158,11 +163,11 @@ export default function Home() {
                 className="mt-6 w-full py-3 px-6 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all font-semibold flex items-center justify-center gap-2 group disabled:opacity-75 disabled:cursor-not-allowed"
               >
                 <Sparkles className="w-5 h-5" />
-                <span>Créer ma landing page</span>
+                <span>{t.createLandingPage}</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
               <p className="mt-3 text-sm text-gray-500 text-center">
-                Gratuit pour voir le Hero • 19€ pour débloquer la page complète
+                {t.pricing}
               </p>
             </div>
           </motion.div>
@@ -171,20 +176,20 @@ export default function Home() {
 
       <section className="border-b border-black/10 bg-[#fafbff] px-4 py-20 md:px-8">
         <div className="mx-auto max-w-[1200px]">
-          <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">Prompt to Sitemap</h2>
+          <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">{t.promptToSitemap}</h2>
           <p className="mt-4 max-w-3xl text-lg text-slate-600">
-            Définissez les pages, sections et messages clés de votre site en quelques secondes.
+            {t.sitemapDescription}
           </p>
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             <div className="rounded-2xl border border-black/10 bg-white p-7">
               <Navigation2 className="mb-4 h-7 w-7 text-[#2864ff]" />
-              <h3 className="text-xl font-semibold">Mappez la structure</h3>
-              <p className="mt-2 text-slate-600">Reliez proposition de valeur, sections et parcours utilisateur sans friction.</p>
+              <h3 className="text-xl font-semibold">{t.mapStructure}</h3>
+              <p className="mt-2 text-slate-600">{t.mapStructureDesc}</p>
             </div>
             <div className="rounded-2xl border border-black/10 bg-white p-7">
               <CheckCircle2 className="mb-4 h-7 w-7 text-[#2864ff]" />
-              <h3 className="text-xl font-semibold">Scopage plus précis</h3>
-              <p className="mt-2 text-slate-600">Évitez le scope creep et démarrez avec une architecture claire pour le client.</p>
+              <h3 className="text-xl font-semibold">{t.preciseScoping}</h3>
+              <p className="mt-2 text-slate-600">{t.preciseScopingDesc}</p>
             </div>
           </div>
         </div>
@@ -192,20 +197,20 @@ export default function Home() {
 
       <section className="border-b border-black/10 px-4 py-20 md:px-8">
         <div className="mx-auto max-w-[1200px]">
-          <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">Sitemap to Wireframe</h2>
+          <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">{t.sitemapToWireframe}</h2>
           <p className="mt-4 max-w-3xl text-lg text-slate-600">
-            Générez des wireframes utilisables immédiatement avec de vraies sections de landing.
+            {t.wireframeDescription}
           </p>
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             <div className="rounded-2xl border border-black/10 bg-white p-7">
               <Edit3 className="mb-4 h-7 w-7 text-[#2864ff]" />
-              <h3 className="text-xl font-semibold">Draft instantané</h3>
-              <p className="mt-2 text-slate-600">Un premier jet concret dès la première minute pour accélérer vos validations.</p>
+              <h3 className="text-xl font-semibold">{t.instantDraft}</h3>
+              <p className="mt-2 text-slate-600">{t.instantDraftDesc}</p>
             </div>
             <div className="rounded-2xl border border-black/10 bg-white p-7">
               <MessageSquare className="mb-4 h-7 w-7 text-[#2864ff]" />
-              <h3 className="text-xl font-semibold">Édition augmentée</h3>
-              <p className="mt-2 text-slate-600">Ajustez le copywriting et les blocs en direct selon vos retours équipe/client.</p>
+              <h3 className="text-xl font-semibold">{t.enhancedEditing}</h3>
+              <p className="mt-2 text-slate-600">{t.enhancedEditingDesc}</p>
             </div>
           </div>
         </div>
@@ -213,24 +218,24 @@ export default function Home() {
 
       <section className="border-b border-black/10 bg-[#fafbff] px-4 py-20 md:px-8">
         <div className="mx-auto max-w-[1200px]">
-          <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">Wireframe to Style Guide</h2>
+          <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">{t.wireframeToStyleGuide}</h2>
           <p className="mt-4 max-w-3xl text-lg text-slate-600">
-            Définissez rapidement un design system cohérent pour finaliser votre landing sans ralentir.
+            {t.styleGuideDescription}
           </p>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {[
-              { icon: Palette, title: "Couleurs", text: "Extraction auto depuis vos assets pour garder une identité cohérente." },
-              { icon: Sparkles, title: "Typographie", text: "Hiérarchie lisible et équilibrée pour conversion + clarté produit." },
-              { icon: CheckCircle2, title: "Spacing", text: "Rythme visuel propre, prêt à coder sans retouches interminables." },
+              { icon: Palette, titleKey: "colors" as const, textKey: "colorsDesc" as const },
+              { icon: Sparkles, titleKey: "typography" as const, textKey: "typographyDesc" as const },
+              { icon: CheckCircle2, titleKey: "spacing" as const, textKey: "spacingDesc" as const },
             ].map((item) => (
               <motion.div
-                key={item.title}
+                key={item.titleKey}
                 whileHover={{ y: -4 }}
                 className="rounded-2xl border border-black/10 bg-white p-7 transition"
               >
                 <item.icon className="mb-4 h-7 w-7 text-[#2864ff]" />
-                <h3 className="text-xl font-semibold">{item.title}</h3>
-                <p className="mt-2 text-slate-600">{item.text}</p>
+                <h3 className="text-xl font-semibold">{t[item.titleKey]}</h3>
+                <p className="mt-2 text-slate-600">{t[item.textKey]}</p>
               </motion.div>
             ))}
           </div>
@@ -239,20 +244,20 @@ export default function Home() {
 
       <section className="border-b border-black/10 px-4 py-20 md:px-8">
         <div className="mx-auto max-w-[1200px]">
-          <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">Export to Figma, React & Code</h2>
+          <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">{t.exportToTools}</h2>
           <p className="mt-4 max-w-3xl text-lg text-slate-600">
-            Utilisez vos outils habituels. Copiez-collez les blocs là où vous travaillez déjà.
+            {t.exportDescription}
           </p>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {[
-              { icon: Palette, title: "Copy to Figma", text: "Passez de l'idéation au design final sans ressaisie." },
-              { icon: Code, title: "Copy to React", text: "Export Next.js/TypeScript/Tailwind prêt pour la prod." },
-              { icon: Square, title: "Copy to Webflow", text: "Gardez la flexibilité de vos workflows no-code/low-code." },
+              { icon: Palette, titleKey: "copyToFigma" as const, textKey: "copyToFigmaDesc" as const },
+              { icon: Code, titleKey: "copyToReact" as const, textKey: "copyToReactDesc" as const },
+              { icon: Square, titleKey: "copyToWebflow" as const, textKey: "copyToWebflowDesc" as const },
             ].map((item) => (
-              <div key={item.title} className="rounded-2xl border border-black/10 bg-white p-7">
+              <div key={item.titleKey} className="rounded-2xl border border-black/10 bg-white p-7">
                 <item.icon className="mb-4 h-7 w-7 text-[#2864ff]" />
-                <h3 className="text-xl font-semibold">{item.title}</h3>
-                <p className="mt-2 text-slate-600">{item.text}</p>
+                <h3 className="text-xl font-semibold">{t[item.titleKey]}</h3>
+                <p className="mt-2 text-slate-600">{t[item.textKey]}</p>
               </div>
             ))}
           </div>
@@ -261,12 +266,12 @@ export default function Home() {
 
       <section className="border-b border-black/10 bg-[#fafbff] px-4 py-20 md:px-8">
         <div className="mx-auto max-w-[1200px]">
-          <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">Ils gagnent du temps chaque semaine</h2>
+          <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">{t.testimonials}</h2>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {[
-              "On a réduit notre cycle landing de 2 semaines à 2 jours.",
-              "Le copy IA est déjà exploitable dès la première génération.",
-              "Le code exporté est propre, lisible et facile à maintenir.",
+              t.testimonial1,
+              t.testimonial2,
+              t.testimonial3,
             ].map((quote, i) => (
               <div key={quote} className="rounded-2xl border border-black/10 bg-white p-7">
                 <div className="mb-4 flex gap-1 text-amber-500">
@@ -283,22 +288,22 @@ export default function Home() {
 
       <section className="px-4 py-24 md:px-8">
         <div className="mx-auto max-w-[900px] text-center">
-          <h2 className="text-5xl font-semibold tracking-tight md:text-6xl">Try Redraft.ai sur votre prochain lancement</h2>
+          <h2 className="text-5xl font-semibold tracking-tight md:text-6xl">{t.tryRedraft}</h2>
           <p className="mx-auto mt-5 max-w-2xl text-lg text-slate-600">
-            De l'idée au code Next.js prêt à shipper en quelques minutes.
+            {t.tryDescription}
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link
               href="/auth/signup"
               className="inline-flex items-center gap-2 rounded-lg bg-[#2864ff] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1d4fe0]"
             >
-              Start free <ArrowRight className="h-4 w-4" />
+              {t.startFree} <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="/generator"
               className="rounded-lg border border-black/15 px-5 py-3 text-sm font-semibold text-slate-800 transition hover:bg-slate-100"
             >
-              Voir un exemple de code
+              {t.seeExample}
             </Link>
           </div>
         </div>
@@ -308,39 +313,38 @@ export default function Home() {
         <div className="mx-auto grid max-w-[1200px] gap-10 md:grid-cols-5">
           <div className="md:col-span-2">
             <div className="flex items-center gap-2">
-              <Sparkles className="h-5 w-5 text-[#2864ff]" />
-              <span className="text-lg font-semibold">Redraft.AI</span>
+              <Image src="/redraft-logo.svg" alt="Redraft.AI" width={40} height={40} />
             </div>
             <p className="mt-3 max-w-sm text-sm text-slate-600">
-              Générateur de landing pages SaaS haute performance avec export de code propre.
+              {t.productDesc}
             </p>
           </div>
           <div>
-            <p className="mb-3 text-sm font-semibold">Produit</p>
+            <p className="mb-3 text-sm font-semibold">{t.product}</p>
             <ul className="space-y-2 text-sm text-slate-600">
-              <li>AI Site Builder</li>
-              <li>React Library</li>
-              <li>Pricing</li>
+              <li>{t.aiSiteBuilder}</li>
+              <li>{t.reactLibrary}</li>
+              <li>{t.pricingLink}</li>
             </ul>
           </div>
           <div>
-            <p className="mb-3 text-sm font-semibold">Ressources</p>
+            <p className="mb-3 text-sm font-semibold">{t.resources}</p>
             <ul className="space-y-2 text-sm text-slate-600">
-              <li>Documentation</li>
-              <li>Community</li>
-              <li>Support</li>
+              <li>{t.documentation}</li>
+              <li>{t.community}</li>
+              <li>{t.support}</li>
             </ul>
           </div>
           <div>
-            <p className="mb-3 text-sm font-semibold">Légal</p>
+            <p className="mb-3 text-sm font-semibold">{t.legal}</p>
             <ul className="space-y-2 text-sm text-slate-600">
-              <li><Link href="/legal/privacy">Confidentialité</Link></li>
-              <li><Link href="/legal/terms">Conditions</Link></li>
+              <li><Link href="/legal/privacy">{t.privacy}</Link></li>
+              <li><Link href="/legal/terms">{t.terms}</Link></li>
             </ul>
           </div>
         </div>
         <div className="mx-auto mt-10 max-w-[1200px] border-t border-black/10 pt-6 text-sm text-slate-500">
-          © 2026 Redraft.AI. Tous droits réservés.
+          {t.copyright}
         </div>
       </footer>
     </main>

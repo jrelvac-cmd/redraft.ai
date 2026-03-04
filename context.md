@@ -4,13 +4,15 @@
 Redraft.AI est un générateur de landing pages haute performance pour SaaS et startups, propulsé par l'IA. Il combine Claude 3.5 Sonnet et GPT-4o pour générer des pages complètes avec copywriting optimisé et du code Next.js prêt à déployer.
 
 ## Dernière mise à jour
-**03 mars 2026** - Fix: reset du store Zustand (useGeneratorStore) à l'entrée sur /generator et au chargement des questions, pour repartir de zéro sur un nouveau projet
-- ✅ 20 squelettes dans `components/skeletons/pages/` - structure uniquement, sans design
-- ✅ Chaque squelette = ordre des zones (nav, hero, features, pricing, cta, etc.)
-- ✅ Types: Freemium, B2B, Product Showcase, Problem-Solution, Platform, Analytics, etc.
-- ✅ API `/api/select-skeleton` + prompt mis à jour pour les 20 squelettes
-- ✅ generate-code utilise skeleton_id pour imposer l'architecture
-- **Impact:** L'IA choisit la structure adaptée au type de SaaS et génère le code dans le bon ordre
+**04 mars 2026** - Animations de transition FR/EN sur Coming Soon
+- ✅ Animation fade + slide en haut lors du changement de langue
+- ✅ Texte titre animé : `opacity 0→1, y 10→0` (400ms)
+- ✅ Sous-titre animé avec délai 100ms
+- ✅ Formulaire animé avec délai 200ms
+- ✅ Footer animé avec délai 300ms
+- ✅ Smooth transitions entre FR et EN
+- ✅ Framer Motion intégré
+- **Impact:** Transitions fluides et professionnelles lors du changement de langue
 
 ## Stack Technique
 
@@ -18,6 +20,7 @@ Redraft.AI est un générateur de landing pages haute performance pour SaaS et s
 - **Framework**: Next.js 16.1.6 (App Router)
 - **Langage**: TypeScript (strict mode)
 - **Styling**: Tailwind CSS
+- **Typographie**: Cal Sans (police par défaut) + Inter (fallback)
 - **UI Components**: Shadcn/UI
 - **Animations**: Framer Motion (entrées, stagger, scroll triggers)
 - **Icônes**: Lucide React
@@ -33,6 +36,7 @@ Redraft.AI est un générateur de landing pages haute performance pour SaaS et s
 
 ### Routes principales
 - `/` : Landing page marketing (page.tsx - REFONTÉE)
+- `/coming-soon` : Page Coming Soon avec collecte d'emails (visible en production)
 - `/generator` : Chatbox + upload d'images
 - `/generator/[projectId]/questions` : Tunnel de questions
 - `/generator/[projectId]/preview` : Preview avec paywall
@@ -44,6 +48,7 @@ Redraft.AI est un générateur de landing pages haute performance pour SaaS et s
 - `/auth/signup` : Inscription
 
 ### API Routes
+- `/api/subscribe-email` : Collecte des emails Coming Soon
 - `/api/upload-asset` : Upload de fichiers vers Supabase Storage
 - `/api/analyze-images` : Analyse d'images avec GPT-4o
 - `/api/generate-headlines` : Génération de headlines
@@ -225,10 +230,11 @@ Importés depuis `Components - Feuille 1.csv` et organisés par type :
 ## Sections de la Landing Page
 
 ### 1. Navigation (fixed)
-- Logo + Redraft.AI
-- Liens: Connexion, Commencer
-- Backdrop blur avec border subtle
-- Fixed top-0 z-50
+- **Design** : Navbar centrée avec bords arrondis (rounded-full), flotante au-dessus du contenu
+- **Logo SVG** : Logo Redraft.AI noir haute résolution (40x40px)
+- **Styling** : Backdrop blur, ombrage subtil, pas de border-bottom
+- **Contenu** : Logo, liens de connexion, bouton "Commencer"
+- **Responsive** : Max-width limité, padding adaptatif
 
 ### 2. Hero Section
 - Gradient background (from-white via-blue-50/30 to-white)

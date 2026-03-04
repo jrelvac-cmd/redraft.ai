@@ -101,22 +101,19 @@ export default function GeneratorPage() {
     setError(null);
 
     try {
-      const { data: project, error: projectError } = await supabase
-        .from("projects")
-        .insert({
-          user_id: user.id,
-          name: "Nouveau projet",
-          description: description,
-          status: "draft",
-          input_data: {
-            description: description,
-            uploaded_files_count: files.length,
-          },
-        })
-        .select()
-        .single();
+      const res = await fetch("/api/projects/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          description,
+          uploaded_files_count: files.length,
+        }),
+      });
 
-      if (projectError) throw projectError;
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || "Erreur création projet");
+
+      const project = json.project;
 
       if (files.length > 0) {
         const uploadPromises = files.map(async ({ file }) => {

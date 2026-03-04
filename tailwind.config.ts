@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+  		fontFamily: {
+  			sans: 'var(--font-cal-sans), var(--font-inter), sans-serif',
+  		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
@@ -89,7 +92,13 @@ const config: Config = {
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), function({ addBase, theme }) {
+    addBase({
+      ".font-semibold, .font-bold": {
+        letterSpacing: "0.5px"
+      }
+    })
+  }],
 };
 
 export default config;

@@ -10,6 +10,13 @@ import type { AIGeneratedData } from "@/types";
 
 export async function POST(request: NextRequest) {
   try {
+    if (!process.env.ANTHROPIC_API_KEY) {
+      return NextResponse.json(
+        { error: "ANTHROPIC_API_KEY non configurée" },
+        { status: 500 }
+      );
+    }
+
     const supabase = await createClient();
 
     const {
@@ -51,14 +58,25 @@ export async function POST(request: NextRequest) {
 
     const userPrompt = getGeneratePagePrompt(inputData);
 
-    const response = await generateWithClaude(
-      SYSTEM_PROMPT_GENERATE_PAGE,
-      userPrompt,
-      {
-        maxTokens: 4096,
-        temperature: 0.7,
-      }
-    );
+    let response: string;
+    try {
+      response = (await generateWithClaude(
+        SYSTEM_PROMPT_GENERATE_PAGE,
+        userPrompt,
+        {
+          maxTokens: 4096,
+          temperature: 0.7,
+        }
+      )) as string;
+    } catch (claudeError: unknown) {
+      const err = claudeError as { message?: string; status?: number; error?: { message?: string } };
+      const msg = err?.error?.message || err?.message || String(claudeError);
+      console.error("Claude API error:", claudeError);
+      return NextResponse.json(
+        { error: `Erreur Claude: ${msg}` },
+        { status: 500 }
+      );
+    }
 
     let aiData: AIGeneratedData;
     try {
@@ -94,8 +112,15 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ aiData, designTokens });
   } catch (error) {
     console.error("Error generating page:", error);
+    const err = error as { message?: string; cause?: unknown };
+    const message =
+      err?.message ||
+      (err?.cause && typeof err.cause === "object" && "message" in err.cause
+        ? String((err.cause as { message: string }).message)
+        : null) ||
+      String(error);
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: message || "Erreur inconnue" },
       { status: 500 }
     );
   }
