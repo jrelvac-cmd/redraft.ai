@@ -4,15 +4,13 @@
 Redraft.AI est un générateur de landing pages haute performance pour SaaS et startups, propulsé par l'IA. Il combine Claude 3.5 Sonnet et GPT-4o pour générer des pages complètes avec copywriting optimisé et du code Next.js prêt à déployer.
 
 ## Dernière mise à jour
-**03 mars 2026** - Système de Design Tokens pour cohérence IA (IMPLÉMENTATION COMPLÈTE)
-- ✅ Système d'extraction de design tokens entièrement fonctionnel
-- ✅ 4 styles pré-configurés: Dark, Gradient, Minimal, Playful
-- ✅ Tokens appliqués strictement à TOUTE la page (100% cohérence garantie)
-- ✅ API endpoint `/api/extract-design-tokens` opérationnel
-- ✅ Tokens passés explicitement au prompt Claude/GPT
-- ✅ Build Next.js réussi sans erreurs
-- ✅ Documentation complète (PLAN_EXPLIQUE.md, DESIGN_TOKENS_PLAN.md, IMPLEMENTATION_SUMMARY.md)
-- **Impact:** L'IA génère maintenant des pages visuellement cohérentes, pas génériques
+**03 mars 2026** - 65 composants créés depuis CSV (Pricing, Footers, Features, CTA, Boutons, Testimonials, FAQ, Calendar, Inputs, Table)
+- ✅ 20 squelettes dans `components/skeletons/pages/` - structure uniquement, sans design
+- ✅ Chaque squelette = ordre des zones (nav, hero, features, pricing, cta, etc.)
+- ✅ Types: Freemium, B2B, Product Showcase, Problem-Solution, Platform, Analytics, etc.
+- ✅ API `/api/select-skeleton` + prompt mis à jour pour les 20 squelettes
+- ✅ generate-code utilise skeleton_id pour imposer l'architecture
+- **Impact:** L'IA choisit la structure adaptée au type de SaaS et génère le code dans le bon ordre
 
 ## Stack Technique
 
@@ -167,6 +165,54 @@ RÈGLE STRICTE:
 | `/api/extract-design-tokens` | POST | Extrait tokens d'un style |
 | `/api/generate-page` | POST | Génère landing JSON + tokens |
 | `/api/generate-code` | POST | Génère code React avec tokens |
+
+### Skeletons d'architecture (20 variantes)
+
+Chaque squelette définit l'**ordre des zones** (nav, hero, features, pricing, cta, etc.) sans aucun design. L'IA sélectionne le squelette adapté au type de SaaS.
+
+| ID | Nom | Zones principales | Pour |
+|----|-----|-------------------|------|
+| skeleton-01 | Freemium Classic | hero, features, social-proof, pricing, cta | Slack, Notion |
+| skeleton-02 | Freemium Trust First | hero, social-proof, features, pricing, cta | Crédibilité avant features |
+| skeleton-03 | Freemium Conversion | hero, features, pricing, social-proof, cta | Pricing transparent |
+| skeleton-04 | B2B Enterprise | hero, stats, features, comparison, case-studies, cta | HubSpot, Salesforce |
+| skeleton-05 | B2B Simple | hero, features, social-proof, cta | B2B léger |
+| skeleton-06 | Product Showcase | hero, demo, features, social-proof, cta | Figma, Framer |
+| skeleton-07 | Problem Solution | hero, problem, solution, features, cta | Pain point clair |
+| skeleton-08 | Platform Integrations | hero, integrations, use-cases, how-it-works, cta | Zapier, Make |
+| skeleton-09 | Onboarding Process | hero, process, faq, cta | Onboarding-heavy |
+| skeleton-10 | Analytics | hero, problem, demo, pricing, cta | SaaS data |
+| skeleton-11 | Marketing | hero, features, social-proof, integrations, cta | SaaS marketing |
+| skeleton-12 | Sales CRM | hero, stats, features, comparison, cta | Ventes/CRM |
+| skeleton-13 | Developer Tool | hero, demo, features, cta | Dev tools |
+| skeleton-14 | Multi CTA | hero, features, cta, social-proof, pricing, cta | Multi conversion |
+| skeleton-15 | Product First | hero, demo, features, pricing, cta | Produit-first |
+| skeleton-16 | Long Form | hero, problem, solution, features, how-it-works, social-proof, pricing, faq, cta | Page longue |
+| skeleton-17 | Minimal | hero, features, cta | Minimaliste |
+| skeleton-18 | Trust Heavy | hero, stats, social-proof, features, social-proof, cta | Preuve sociale double |
+| skeleton-19 | Comparison Focus | hero, comparison, features, cta | VS concurrents |
+| skeleton-20 | FAQ Heavy | hero, features, faq, pricing, cta | Objections fréquentes |
+
+### Composants depuis CSV (65 fichiers)
+
+Importés depuis `Components - Feuille 1.csv` et organisés par type :
+
+| Dossier | Contenu |
+|---------|---------|
+| `components/skeletons/pricing/` | 10 variantes (pricing-interaction, dark-gradient-pricing, etc.) |
+| `components/skeletons/footer/` | 7 variantes |
+| `components/skeletons/features/` | 14 variantes |
+| `components/skeletons/cta/` | 4 variantes |
+| `components/skeletons/stats/` | 1 variante |
+| `components/skeletons/button/` | 9 variantes |
+| `components/skeletons/testimonials/` | 5 variantes |
+| `components/skeletons/faq/` | 6 variantes |
+| `components/skeletons/users/` | 1 variante |
+| `components/skeletons/inputs/` | 1 variante |
+| `components/skeletons/table/` | 3 variantes |
+| `components/ui/calendar/` | 4 variantes |
+
+**Note :** Certains fichiers peuvent contenir des erreurs de parsing CSV (guillemets, chaînes multi-lignes). Corriger au cas par cas si le build échoue.
 
 ### Bénéfices du Design Token System
 

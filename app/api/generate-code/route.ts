@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { generateWithClaude } from "@/lib/ai/claude";
 import { SYSTEM_PROMPT_GENERATE_CODE } from "@/lib/ai/prompts";
 import { extractDesignTokens } from "@/lib/ai/extractDesignTokens";
+import { SKELETONS_META } from "@/components/skeletons/pages";
 
 export async function POST(request: NextRequest) {
   try {
@@ -51,7 +52,16 @@ export async function POST(request: NextRequest) {
       inputData
     );
 
+    const skeletonMeta = inputData.skeleton_id
+  ? SKELETONS_META[inputData.skeleton_id]
+  : null;
+
     const userPrompt = `Génère le code Next.js 15 complet pour cette landing page :
+
+${skeletonMeta ? `ARCHITECTURE OBLIGATOIRE (skeleton ${inputData.skeleton_id}) :
+Les sections doivent apparaître dans cet ordre exact : ${skeletonMeta.zones.join(" → ")}
+Respecte cette structure pour app/page.tsx - chaque zone = une section correspondante.
+` : ""}
 
 DESIGN TOKENS (À UTILISER STRICTEMENT) :
 ${JSON.stringify(designTokens, null, 2)}

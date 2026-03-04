@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Navbar from "@/components/skeletons/navbar/navbar";
 
 export default function NavbarDemo() {

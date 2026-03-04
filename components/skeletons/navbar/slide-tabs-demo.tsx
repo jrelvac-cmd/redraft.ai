@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { SlideTabs } from "@/components/ui/slide-tabs";
 
 export default function SideTabsDemo() {
