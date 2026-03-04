@@ -45,6 +45,9 @@ export default function QuestionsPage() {
   }, [projectId]);
 
   const loadProject = async () => {
+    // Réinitialiser le store pour éviter de garder les réponses du projet précédent
+    useGeneratorStore.getState().resetTunnel();
+
     const { data, error } = await supabase
       .from("projects")
       .select("*")

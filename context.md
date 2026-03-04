@@ -4,7 +4,7 @@
 Redraft.AI est un générateur de landing pages haute performance pour SaaS et startups, propulsé par l'IA. Il combine Claude 3.5 Sonnet et GPT-4o pour générer des pages complètes avec copywriting optimisé et du code Next.js prêt à déployer.
 
 ## Dernière mise à jour
-**03 mars 2026** - 65 composants créés depuis CSV (Pricing, Footers, Features, CTA, Boutons, Testimonials, FAQ, Calendar, Inputs, Table)
+**03 mars 2026** - Fix: reset du store Zustand (useGeneratorStore) à l'entrée sur /generator et au chargement des questions, pour repartir de zéro sur un nouveau projet
 - ✅ 20 squelettes dans `components/skeletons/pages/` - structure uniquement, sans design
 - ✅ Chaque squelette = ordre des zones (nav, hero, features, pricing, cta, etc.)
 - ✅ Types: Freemium, B2B, Product Showcase, Problem-Solution, Platform, Analytics, etc.

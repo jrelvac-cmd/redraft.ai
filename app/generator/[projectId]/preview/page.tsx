@@ -74,7 +74,9 @@ export default function PreviewPage() {
       clearInterval(progressInterval);
 
       if (!response.ok) {
-        throw new Error("Failed to generate page");
+        const errData = await response.json().catch(() => ({}));
+        const msg = errData?.error || `Erreur ${response.status}`;
+        throw new Error(msg);
       }
 
       const { aiData: newAiData } = await response.json();
@@ -83,7 +85,8 @@ export default function PreviewPage() {
     } catch (error) {
       console.error("Error generating page:", error);
       clearInterval(progressInterval);
-      alert("Erreur lors de la génération. Veuillez réessayer.");
+      const msg = error instanceof Error ? error.message : "Erreur inconnue";
+      alert(`Erreur lors de la génération: ${msg}`);
     } finally {
       setIsGenerating(false);
     }

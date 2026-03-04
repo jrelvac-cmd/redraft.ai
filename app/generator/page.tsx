@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Sparkles, Upload, X, FileText } from "lucide-react";
 import { AuthModal } from "@/components/shared/AuthModal";
 import { useAuth } from "@/hooks/useAuth";
+import { useGeneratorStore } from "@/hooks/useGeneratorStore";
 import { createClient } from "@/lib/supabase/client";
 
 interface UploadedFile {
@@ -24,6 +25,9 @@ export default function GeneratorPage() {
   const supabase = createClient();
 
   useEffect(() => {
+    // Réinitialiser le store des questions pour repartir de zéro sur un nouveau projet
+    useGeneratorStore.getState().resetTunnel();
+
     const savedDescription = localStorage.getItem("initial_description");
     if (savedDescription) {
       setDescription(savedDescription);
