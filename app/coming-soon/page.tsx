@@ -17,12 +17,20 @@ export default function ComingSoon() {
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [language, setLanguage] = useState<Language>("fr");
+  const [isDesktop, setIsDesktop] = useState(false);
   const confettiRef = useRef<ConfettiRef>(null);
 
   const t = translations[language];
 
-  // Auto-trigger confetti every 10 seconds
+  // Detect if desktop on mount
   useEffect(() => {
+    setIsDesktop(window.innerWidth >= 768);
+  }, []);
+
+  // Auto-trigger confetti every 10 seconds (desktop only)
+  useEffect(() => {
+    if (!isDesktop) return;
+    
     const interval = setInterval(() => {
       confettiRef.current?.fire({
         particleCount: 50,
@@ -32,7 +40,7 @@ export default function ComingSoon() {
     }, 10000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isDesktop]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -74,7 +82,7 @@ export default function ComingSoon() {
         backgroundImage: 'url(/coming-soon-bg.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundAttachment: 'fixed'
+        backgroundAttachment: typeof window !== 'undefined' && window.innerWidth >= 768 ? 'fixed' : 'scroll'
       }}
     >
       {/* Dark overlay for text readability */}
@@ -93,30 +101,30 @@ export default function ComingSoon() {
         />
 
         {/* Logo en haut à gauche */}
-        <div className="absolute top-4 left-4 md:top-6 md:left-8 z-50">
+        <div className="absolute top-4 left-4 md:top-6 md:left-8 z-50 p-1 md:p-0">
           <Image 
             src="/redraft-logo-white.svg" 
             alt="Redraft.AI" 
             width={32} 
             height={32}
-            className="w-8 h-8"
+            className="w-6 sm:w-8 h-6 sm:h-8"
           />
         </div>
 
         {/* Language Toggle */}
-        <div className="absolute top-4 right-4 md:top-6 md:right-8 z-50">
+        <div className="absolute top-4 right-4 md:top-6 md:right-8 z-50 p-1 md:p-0">
           <LanguageToggle onLanguageChange={setLanguage} variant="light" />
         </div>
 
         {/* Content Layer */}
-        <div className="relative z-20 flex flex-col items-center justify-center space-y-3 max-w-2xl px-4">
+        <div className="relative z-20 flex flex-col items-center justify-center space-y-4 sm:space-y-6 max-w-2xl px-4 sm:px-6">
           {/* Main Title with Animation and Gradient */}
           <motion.span 
             key={language}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="pointer-events-none text-center text-6xl sm:text-8xl md:text-9xl font-semibold leading-none whitespace-nowrap bg-gradient-to-b from-white to-white/5 bg-clip-text text-transparent pb-4"
+            className="pointer-events-none text-center text-3xl sm:text-5xl md:text-7xl lg:text-9xl font-semibold leading-tight sm:leading-none break-words bg-gradient-to-b from-white to-white/5 bg-clip-text text-transparent pb-2 sm:pb-4"
           >
             {t.comingSoonTitle}
           </motion.span>
@@ -127,7 +135,7 @@ export default function ComingSoon() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="text-base md:text-lg text-white/80 text-center max-w-xl"
+            className="text-sm sm:text-base md:text-lg text-white/80 text-center max-w-xl"
           >
             {t.comingSoonDesc}
           </motion.p>
@@ -150,14 +158,14 @@ export default function ComingSoon() {
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-3">
                 <div className="flex-1 relative">
-                  <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-white z-10 pointer-events-none" />
+                  <Mail className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 h-4 sm:h-5 w-4 sm:w-5 text-white z-10 pointer-events-none" />
                   <input
                     type="email"
                     placeholder={t.emailPlaceholder}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="w-full pl-12 pr-4 py-3 border border-white/20 rounded-lg bg-white/10 backdrop-blur-sm text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all"
+                    className="w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-2 sm:py-3 border border-white/20 rounded-lg bg-white/10 backdrop-blur-sm text-sm sm:text-base text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all"
                   />
                 </div>
                 <GlowButton
@@ -175,7 +183,7 @@ export default function ComingSoon() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.3 }}
-            className="text-xs md:text-sm text-white/60 mt-3"
+            className="text-xs sm:text-sm text-white/60 mt-2 sm:mt-3"
           >
             {t.comingSoonCopyright}
           </motion.p>
