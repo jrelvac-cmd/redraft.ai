@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 
 interface ComponentProps {
   label?: string;
-  onClick?(): void;
+  onClick?: (e?: React.FormEvent) => void | Promise<void>;
   className?: string;
 }
 
@@ -12,10 +12,10 @@ export const GlowButton = forwardRef<HTMLButtonElement, ComponentProps>(
   ({ label = "Generate", onClick, className }, ref) => {
     const [isClicked, setIsClicked] = useState(false);
 
-    const handleClick = () => {
+    const handleClick = async (e?: React.FormEvent) => {
       setIsClicked(true);
       setTimeout(() => setIsClicked(false), 200);
-      onClick?.();
+      await onClick?.(e);
     };
 
     return (
