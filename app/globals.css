@@ -115,6 +115,16 @@
     height: 100% !important;
   }
 
+  /* iOS safe area support */
+  @supports (padding: max(0px)) {
+    .coming-soon-main {
+      padding-top: max(env(safe-area-inset-top), 0px);
+      padding-bottom: max(env(safe-area-inset-bottom), 0px);
+      padding-left: max(env(safe-area-inset-left), 0px);
+      padding-right: max(env(safe-area-inset-right), 0px);
+    }
+  }
+
   @keyframes pulse-glow {
     0% {
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.25);

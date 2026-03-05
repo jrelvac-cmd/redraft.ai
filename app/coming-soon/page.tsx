@@ -88,19 +88,21 @@ export default function ComingSoon() {
 
   return (
     <main 
-      className="h-screen text-[#0f172a] overflow-hidden relative"
+      className="h-screen text-[#0f172a] overflow-hidden relative coming-soon-main"
       style={{
         backgroundImage: 'url(/coming-soon-bg.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: typeof window !== 'undefined' && window.innerWidth >= 768 ? 'fixed' : 'scroll',
         height: '100dvh',
+        minHeight: '-webkit-fill-available',
         position: 'fixed',
         top: 0,
         left: 0,
         right: 0,
         bottom: 0,
-        overflow: 'hidden'
+        overflow: 'hidden',
+        WebkitOverflowScrolling: 'touch'
       }}
     >
       {/* Dark overlay for text readability */}
@@ -119,13 +121,14 @@ export default function ComingSoon() {
         />
 
         {/* Logo en haut à gauche */}
-        <div className="absolute top-4 left-4 md:top-6 md:left-8 z-50 p-1 md:p-0">
+        <div className="absolute top-6 left-6 md:top-6 md:left-8 z-50">
           <Image 
             src="/redraft-logo-white.svg" 
             alt="Redraft.AI" 
-            width={40} 
-            height={40}
-            className="w-10 sm:w-12 md:w-8 h-10 sm:h-12 md:h-8"
+            width={48} 
+            height={48}
+            className="w-12 sm:w-14 md:w-8 h-12 sm:h-14 md:h-8 drop-shadow-lg"
+            priority
           />
         </div>
 
