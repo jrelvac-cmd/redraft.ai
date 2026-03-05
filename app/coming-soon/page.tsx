@@ -128,7 +128,11 @@ export default function ComingSoon() {
             width={48} 
             height={48}
             className="w-12 sm:w-14 md:w-8 h-12 sm:h-14 md:h-8 drop-shadow-lg"
+            style={{
+              filter: 'brightness(0) invert(1) drop-shadow(0 0 10px rgba(255,255,255,0.5))',
+            }}
             priority
+            unoptimized
           />
         </div>
 
