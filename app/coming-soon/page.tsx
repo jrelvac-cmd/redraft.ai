@@ -94,7 +94,6 @@ export default function ComingSoon() {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: typeof window !== 'undefined' && window.innerWidth >= 768 ? 'fixed' : 'scroll',
-        height: '100vh',
         height: '100dvh',
         position: 'fixed',
         top: 0,
