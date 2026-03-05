@@ -95,14 +95,15 @@ export default function ComingSoon() {
         backgroundPosition: 'center',
         backgroundAttachment: typeof window !== 'undefined' && window.innerWidth >= 768 ? 'fixed' : 'scroll',
         height: '100dvh',
-        minHeight: '-webkit-fill-available',
+        minHeight: '100vh',
         position: 'fixed',
         top: 0,
         left: 0,
         right: 0,
         bottom: 0,
         overflow: 'hidden',
-        WebkitOverflowScrolling: 'touch'
+        WebkitOverflowScrolling: 'touch',
+        backgroundColor: '#1a1a1a'
       }}
     >
       {/* Dark overlay for text readability */}
@@ -149,9 +150,9 @@ export default function ComingSoon() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="pointer-events-none text-center font-semibold leading-tight md:leading-none whitespace-nowrap bg-gradient-to-b from-white to-white/5 bg-clip-text text-transparent pb-1 sm:pb-2 md:pb-4"
+            className="pointer-events-none text-center font-semibold leading-tight md:leading-none whitespace-nowrap bg-gradient-to-b from-white to-white/5 bg-clip-text text-transparent"
             style={{
-              fontSize: 'clamp(2.25rem, 10vw, 8rem)',
+              fontSize: 'clamp(3rem, 13vw, 8rem)',
             }}
           >
             {t.comingSoonTitle}
@@ -163,7 +164,7 @@ export default function ComingSoon() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="text-base sm:text-xl md:text-lg text-white/90 text-center max-w-xl mt-1 sm:mt-2 md:mt-3 font-medium"
+            className="text-sm sm:text-base md:text-lg text-white/80 text-center max-w-xl mt-2 font-normal"
           >
             {t.comingSoonDesc}
           </motion.p>
