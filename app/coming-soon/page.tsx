@@ -142,7 +142,7 @@ export default function ComingSoon() {
         </div>
 
         {/* Content Layer */}
-        <div className="relative z-20 flex flex-col items-center justify-center space-y-2 sm:space-y-3 md:space-y-3 max-w-2xl px-4 sm:px-6 md:px-4">
+        <div className="relative z-20 flex flex-col items-center justify-center max-w-2xl px-4 sm:px-6 md:px-4">
           {/* Main Title with Animation and Gradient */}
           <motion.span 
             key={language}
@@ -160,7 +160,7 @@ export default function ComingSoon() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="text-sm sm:text-base md:text-lg text-white/80 text-center max-w-xl"
+            className="text-sm sm:text-base md:text-lg text-white/80 text-center max-w-xl mt-1 sm:mt-2 md:mt-3"
           >
             {t.comingSoonDesc}
           </motion.p>
@@ -171,7 +171,7 @@ export default function ComingSoon() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.2 }}
-            className="w-full max-w-md mt-3"
+            className="w-full max-w-md mt-6 sm:mt-8 md:mt-3"
           >
             {submitted ? (
               <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 flex items-center gap-3 animate-in fade-in zoom-in">
