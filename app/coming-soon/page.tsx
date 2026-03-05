@@ -90,10 +90,12 @@ export default function ComingSoon() {
     <main 
       className="h-screen text-[#0f172a] overflow-hidden relative coming-soon-main"
       style={{
-        backgroundImage: 'url(/coming-soon-bg.jpg)',
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        backgroundImage: 'url(/coming-soon-bg.jpg), linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
         backgroundSize: '110% 110%',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
+        backgroundBlendMode: 'overlay',
         height: '100dvh',
         minHeight: '100vh',
         position: 'fixed',
