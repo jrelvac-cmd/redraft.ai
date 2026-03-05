@@ -138,14 +138,14 @@ export default function ComingSoon() {
         </div>
 
         {/* Content Layer */}
-        <div className="relative z-20 flex flex-col items-center justify-center space-y-4 sm:space-y-6 md:space-y-3 max-w-2xl px-4 sm:px-6 md:px-4">
+        <div className="relative z-20 flex flex-col items-center justify-center space-y-2 sm:space-y-3 md:space-y-3 max-w-2xl px-4 sm:px-6 md:px-4">
           {/* Main Title with Animation and Gradient */}
           <motion.span 
             key={language}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="pointer-events-none text-center text-5xl sm:text-7xl md:text-9xl font-semibold leading-tight md:leading-none whitespace-nowrap bg-gradient-to-b from-white to-white/5 bg-clip-text text-transparent pb-2 sm:pb-4"
+            className="pointer-events-none text-center text-6xl sm:text-8xl md:text-9xl font-semibold leading-tight md:leading-none whitespace-nowrap bg-gradient-to-b from-white to-white/5 bg-clip-text text-transparent pb-1 sm:pb-2 md:pb-4"
           >
             {t.comingSoonTitle}
           </motion.span>
