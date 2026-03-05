@@ -151,7 +151,7 @@ export default function ComingSoon() {
             transition={{ duration: 0.4 }}
             className="pointer-events-none text-center font-semibold leading-tight md:leading-none whitespace-nowrap bg-gradient-to-b from-white to-white/5 bg-clip-text text-transparent pb-1 sm:pb-2 md:pb-4"
             style={{
-              fontSize: 'clamp(2.5rem, 12vw, 8rem)',
+              fontSize: 'clamp(2.25rem, 10vw, 8rem)',
             }}
           >
             {t.comingSoonTitle}
@@ -163,7 +163,7 @@ export default function ComingSoon() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="text-sm sm:text-base md:text-lg text-white/80 text-center max-w-xl mt-1 sm:mt-2 md:mt-3"
+            className="text-base sm:text-xl md:text-lg text-white/90 text-center max-w-xl mt-1 sm:mt-2 md:mt-3 font-medium"
           >
             {t.comingSoonDesc}
           </motion.p>
@@ -174,7 +174,7 @@ export default function ComingSoon() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.2 }}
-            className="w-full max-w-md mt-6 sm:mt-8 md:mt-3"
+            className="w-full max-w-lg mt-6 sm:mt-8 md:mt-3"
           >
             {submitted ? (
               <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 flex items-center gap-3 animate-in fade-in zoom-in">
@@ -184,22 +184,22 @@ export default function ComingSoon() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <div className="flex-1 relative">
-                  <Mail className="absolute left-3 sm:left-4 md:left-4 top-1/2 transform -translate-y-1/2 h-4 sm:h-5 md:h-5 w-4 sm:w-5 md:w-5 text-white z-10 pointer-events-none" />
+                  <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-white z-10 pointer-events-none" />
                   <input
                     type="email"
                     placeholder={t.emailPlaceholder}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="w-full pl-10 sm:pl-12 md:pl-12 pr-3 sm:pr-4 md:pr-4 py-2 sm:py-3 md:py-3 border border-white/20 rounded-lg bg-white/10 backdrop-blur-sm text-sm sm:text-base md:text-base text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all"
+                    className="w-full pl-12 pr-4 py-3.5 sm:py-4 border border-white/20 rounded-xl bg-white/10 backdrop-blur-sm text-base sm:text-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all"
                   />
                 </div>
                 <GlowButton
                   label={isLoading ? t.notifying : t.notifyMe}
                   type="submit"
-                  className="w-full"
+                  className="w-full text-base sm:text-lg py-4"
                 />
               </form>
             )}
@@ -211,7 +211,7 @@ export default function ComingSoon() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.3 }}
-            className="text-xs sm:text-sm md:text-sm text-white/60 mt-2 sm:mt-3 md:mt-3"
+            className="text-sm sm:text-base md:text-sm text-white/70 mt-4 sm:mt-5 md:mt-3"
           >
             {t.comingSoonCopyright}
           </motion.p>
