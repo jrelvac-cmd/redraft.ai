@@ -1,0 +1,42 @@
+---
+description: Automatically deploy changes to Vercel after every modification
+alwaysApply: true
+---
+
+# Auto-Deploy to Vercel
+
+## Rule
+After **every** code modification, you MUST automatically commit and push changes to trigger Vercel deployment.
+
+## Workflow
+1. Make the requested code changes
+2. **Immediately** run:
+   ```bash
+   git add -A
+   git commit -m "Descriptive commit message"
+   git push
+   ```
+3. Do NOT ask for permission - deploy automatically
+4. Inform user that changes are deployed
+
+## Commit Message Format
+Use clear, descriptive commit messages:
+- `feat: add new feature X`
+- `fix: resolve issue with Y`
+- `style: update mobile styling for Z`
+- `refactor: improve component A`
+
+## Example
+```bash
+# User asks: "Change button color to blue"
+# 1. Modify button component
+# 2. Auto-deploy:
+git add -A && git commit -m "style: change button color to blue" && git push
+# 3. Confirm: "✅ Changes deployed to Vercel"
+```
+
+## Important
+- Never skip deployment
+- Never ask "Should I deploy?"
+- Always push immediately after changes
+- This ensures the live site stays up-to-date
