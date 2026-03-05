@@ -88,28 +88,21 @@ export default function ComingSoon() {
 
   return (
     <main 
-      className="h-screen text-[#0f172a] overflow-hidden relative coming-soon-main"
+      className="w-screen h-screen text-[#0f172a] overflow-hidden relative coming-soon-main"
       style={{
         backgroundImage: 'url(/coming-soon-bg.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: typeof window !== 'undefined' && window.innerWidth >= 768 ? 'fixed' : 'scroll',
+        width: '100vw',
+        height: '100vh',
         height: '100dvh',
-        minHeight: '-webkit-fill-available',
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        overflow: 'hidden',
-        WebkitOverflowScrolling: 'touch'
+        margin: 0,
+        padding: 0
       }}
     >
-      {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 bg-black/40" style={{ zIndex: 1 }} />
-
       {/* Main Confetti Section */}
-      <div className="relative flex h-screen w-full flex-col items-center justify-center overflow-visible" style={{ zIndex: 2 }}>
+      <div className="relative flex h-full w-full flex-col items-center justify-center" style={{ zIndex: 2 }}>
         {/* Confetti Canvas */}
         <Confetti
           ref={confettiRef}
