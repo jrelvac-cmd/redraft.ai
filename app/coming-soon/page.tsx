@@ -82,7 +82,9 @@ export default function ComingSoon() {
         backgroundImage: 'url(/coming-soon-bg.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundAttachment: typeof window !== 'undefined' && window.innerWidth >= 768 ? 'fixed' : 'scroll'
+        backgroundAttachment: typeof window !== 'undefined' && window.innerWidth >= 768 ? 'fixed' : 'scroll',
+        minHeight: '100vh',
+        minHeight: '100dvh'
       }}
     >
       {/* Dark overlay for text readability */}
@@ -105,9 +107,9 @@ export default function ComingSoon() {
           <Image 
             src="/redraft-logo-white.svg" 
             alt="Redraft.AI" 
-            width={32} 
-            height={32}
-            className="w-6 sm:w-8 md:w-8 h-6 sm:h-8 md:h-8"
+            width={40} 
+            height={40}
+            className="w-10 sm:w-12 md:w-8 h-10 sm:h-12 md:h-8"
           />
         </div>
 
@@ -124,7 +126,7 @@ export default function ComingSoon() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="pointer-events-none text-center text-3xl sm:text-5xl md:text-9xl font-semibold leading-tight md:leading-none md:whitespace-nowrap bg-gradient-to-b from-white to-white/5 bg-clip-text text-transparent pb-2 sm:pb-4"
+            className="pointer-events-none text-center text-5xl sm:text-7xl md:text-9xl font-semibold leading-tight md:leading-none whitespace-nowrap bg-gradient-to-b from-white to-white/5 bg-clip-text text-transparent pb-2 sm:pb-4"
           >
             {t.comingSoonTitle}
           </motion.span>
