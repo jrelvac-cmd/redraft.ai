@@ -90,37 +90,23 @@ export default function ComingSoon() {
     <main 
       className="h-screen text-[#0f172a] overflow-hidden relative coming-soon-main"
       style={{
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        backgroundImage: 'url(/coming-soon-bg.jpg), linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        backgroundSize: '110% 110%',
+        backgroundImage: 'url(/coming-soon-bg.jpg)',
+        backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundBlendMode: 'overlay',
+        backgroundAttachment: typeof window !== 'undefined' && window.innerWidth >= 768 ? 'fixed' : 'scroll',
         height: '100dvh',
-        minHeight: '100vh',
+        minHeight: '-webkit-fill-available',
         position: 'fixed',
-        top: '-5%',
-        left: '-5%',
-        right: '-5%',
-        bottom: '-5%',
-        width: '110%',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
         overflow: 'hidden',
         WebkitOverflowScrolling: 'touch'
       }}
     >
-      {/* Dark overlay for text readability - extended */}
-      <div 
-        className="absolute bg-black/40" 
-        style={{ 
-          zIndex: 1,
-          top: '-10%',
-          left: '-10%',
-          right: '-10%',
-          bottom: '-10%',
-          width: '120%',
-          height: '120%'
-        }} 
-      />
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 bg-black/40" style={{ zIndex: 1 }} />
 
       {/* Main Confetti Section */}
       <div className="relative flex h-screen w-full flex-col items-center justify-center overflow-visible" style={{ zIndex: 2 }}>
@@ -165,7 +151,7 @@ export default function ComingSoon() {
             transition={{ duration: 0.4 }}
             className="pointer-events-none text-center font-semibold leading-tight md:leading-none whitespace-nowrap bg-gradient-to-b from-white to-white/5 bg-clip-text text-transparent"
             style={{
-              fontSize: 'clamp(3rem, 13vw, 8rem)',
+              fontSize: 'clamp(2.75rem, 13vw, 8rem)',
             }}
           >
             {t.comingSoonTitle}
@@ -177,7 +163,7 @@ export default function ComingSoon() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="text-sm sm:text-base md:text-lg text-white/80 text-center max-w-xl mt-2 font-normal"
+            className="text-sm sm:text-base md:text-lg text-white/80 text-center max-w-xl mt-2 md:mt-3 font-normal"
           >
             {t.comingSoonDesc}
           </motion.p>
