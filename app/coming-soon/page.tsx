@@ -27,6 +27,17 @@ export default function ComingSoon() {
     setIsDesktop(window.innerWidth >= 768);
   }, []);
 
+  // Disable scroll on mount
+  useEffect(() => {
+    document.body.classList.add('no-scroll');
+    document.documentElement.style.overflow = 'hidden';
+    
+    return () => {
+      document.body.classList.remove('no-scroll');
+      document.documentElement.style.overflow = '';
+    };
+  }, []);
+
   // Auto-trigger confetti every 10 seconds (desktop only)
   useEffect(() => {
     if (!isDesktop) return;
@@ -77,14 +88,20 @@ export default function ComingSoon() {
 
   return (
     <main 
-      className="min-h-screen text-[#0f172a] overflow-hidden relative"
+      className="h-screen text-[#0f172a] overflow-hidden relative"
       style={{
         backgroundImage: 'url(/coming-soon-bg.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: typeof window !== 'undefined' && window.innerWidth >= 768 ? 'fixed' : 'scroll',
-        minHeight: '100vh',
-        minHeight: '100dvh'
+        height: '100vh',
+        height: '100dvh',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        overflow: 'hidden'
       }}
     >
       {/* Dark overlay for text readability */}
