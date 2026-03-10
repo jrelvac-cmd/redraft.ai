@@ -47,12 +47,15 @@ interface MenuItem {
   items?: MenuItem[];
 }
 
+import { LanguageToggle } from "@/components/language-toggle";
+
 interface NavbarProps {
   logo?: {
     url: string;
     src: string;
     alt: string;
     title: string;
+    component?: React.ReactNode;
   };
   menu?: MenuItem[];
   mobileExtraLinks?: {
@@ -69,6 +72,7 @@ interface NavbarProps {
       url: string;
     };
   };
+  onLanguageChange?: (lang: "fr" | "en") => void;
 }
 
 export default function Navbar({
@@ -162,17 +166,25 @@ export default function Navbar({
     login: { text: "Sign in", url: "#" },
     signup: { text: "Get Started", url: "#" },
   },
+  onLanguageChange,
 }: NavbarProps) {
   const [openSearch, setOpenSearch] = React.useState(false);
 
   return (
     <section className="py-4">
-      <div className="container">
+      <div className="container mx-auto max-w-[1200px] px-4 md:px-8">
         {/* Desktop Navbar */}
         <nav className="hidden justify-between lg:flex">
           <div className="flex items-center gap-6">
-            <Link href={logo.url} className="flex items-center gap-2">
-              <img width={32} height={32} src={logo.src} className="w-8" alt={logo.alt} />
+            <Link href={logo.url} className="flex items-center gap-2 group">
+              {logo.component ? (
+                <div className="group-hover:scale-105 transition-transform duration-300">
+                  {logo.component}
+                </div>
+              ) : (
+                <img width={32} height={32} src={logo.src} className="w-8" alt={logo.alt} />
+              )}
+              <span className="font-bold text-lg tracking-tight text-slate-900">{logo.title}</span>
             </Link>
             <div className="flex items-center">
               <NavigationMenu className="[&_[data-radix-navigation-menu-viewport]]:rounded-3xl">
@@ -183,26 +195,28 @@ export default function Navbar({
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4">
+            {onLanguageChange && <LanguageToggle onLanguageChange={onLanguageChange} />}
+            
             {/* Search Button */}
-            <Button
+            {/* <Button
               variant="ghost"
               size="icon"
               onClick={() => setOpenSearch(true)}
             >
               <Search className="size-4" />
-            </Button>
+            </Button> */}
 
             {/* Cart Button */}
-            <Button variant="ghost" size="icon">
+            {/* <Button variant="ghost" size="icon">
               <ShoppingCart className="size-4" />
-            </Button>
+            </Button> */}
 
             {/* Auth Buttons */}
-            <Button asChild variant="outline" size="sm">
+            <Button asChild variant="ghost" className="text-[15px] font-medium text-slate-600 hover:text-slate-900 transition-colors">
               <a href={auth.login.url}>{auth.login.text}</a>
             </Button>
-            <Button asChild size="sm">
+            <Button asChild className="rounded-xl bg-[#0f172a] px-5 py-2.5 text-[15px] font-semibold text-white transition-all hover:bg-[#1e293b] hover:shadow-lg hover:shadow-slate-200 active:scale-95">
               <a href={auth.signup.url}>{auth.signup.text}</a>
             </Button>
           </div>
@@ -212,22 +226,29 @@ export default function Navbar({
         <div className="block lg:hidden">
           <div className="flex items-center justify-between">
             <a href={logo.url} className="flex items-center gap-2">
-              <img src={logo.src} className="w-8" alt={logo.alt} />
+              {logo.component ? (
+                logo.component
+              ) : (
+                <img src={logo.src} className="w-8" alt={logo.alt} />
+              )}
+              <span className="font-bold text-lg text-slate-900">{logo.title}</span>
             </a>
             <div className="flex items-center gap-2">
+              {onLanguageChange && <LanguageToggle onLanguageChange={onLanguageChange} />}
+
               {/* Search button mobile */}
-              <Button
+              {/* <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setOpenSearch(true)}
               >
                 <Search className="size-4" />
-              </Button>
+              </Button> */}
 
               {/* Cart button mobile */}
-              <Button variant="ghost" size="icon">
+              {/* <Button variant="ghost" size="icon">
                 <ShoppingCart className="size-4" />
-              </Button>
+              </Button> */}
 
               {/* Menu Sheet */}
               <Sheet>
@@ -240,7 +261,12 @@ export default function Navbar({
                   <SheetHeader>
                     <SheetTitle>
                       <a href={logo.url} className="flex items-center gap-2">
-                        <img src={logo.src} className="w-8" alt={logo.alt} />
+                        {logo.component ? (
+                          logo.component
+                        ) : (
+                          <img src={logo.src} className="w-8" alt={logo.alt} />
+                        )}
+                        <span className="font-bold text-lg">{logo.title}</span>
                       </a>
                     </SheetTitle>
                   </SheetHeader>

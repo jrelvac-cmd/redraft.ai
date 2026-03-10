@@ -17,51 +17,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { LanguageToggle } from "@/components/language-toggle";
-import { translations } from "@/lib/translations";
-
-type Language = "fr" | "en";
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 30 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-};
-
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-// High quality logo component
-const Logo = ({ className = "w-9 h-9" }: { className?: string }) => (
-  <svg
-    viewBox="0 0 256 256"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className={className}
-  >
-    <rect width="256" height="256" rx="60" fill="#0f172a" />
-    <path
-      d="M80 80L128 176L176 80"
-      stroke="white"
-      strokeWidth="24"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M80 144H176"
-      stroke="white"
-      strokeWidth="24"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
+import Navbar from "@/components/skeletons/navbar/navbar";
+import { Logo } from "@/components/logo";
 
 // Rotating text component
 const RotatingText = ({ words, colorClass = "from-blue-200 to-indigo-200" }: { words: string[], colorClass?: string }) => {
@@ -120,38 +77,30 @@ export default function Home() {
     <main className="min-h-screen bg-white text-[#0f172a] overflow-x-hidden font-sans selection:bg-blue-100 selection:text-blue-900">
 
       {/* ═══════════════ NAVBAR ═══════════════ */}
-      <nav className="sticky top-0 z-50 py-4 bg-white/80 backdrop-blur-xl border-b border-slate-100 transition-all duration-300">
-        <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-          <div className="flex h-12 items-center justify-between">
-            <div className="flex items-center gap-10">
-              <Link href="/" className="flex items-center gap-2 group">
-                <Logo className="w-8 h-8 group-hover:scale-105 transition-transform duration-300" />
-                <span className="font-bold text-lg tracking-tight text-slate-900">Redraft.AI</span>
-              </Link>
-              <div className="hidden md:flex items-center gap-8">
-                <Link href="#features" className="text-[15px] font-medium text-slate-500 hover:text-slate-900 transition-colors">
-                  {t.productNav}
-                </Link>
-                <Link href="#gallery" className="text-[15px] font-medium text-slate-500 hover:text-slate-900 transition-colors">
-                  {t.aboutNav}
-                </Link>
-              </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <LanguageToggle onLanguageChange={setLanguage} />
-              <Link href="/auth/login" className="hidden sm:block text-[15px] font-medium text-slate-600 hover:text-slate-900 transition-colors">
-                {t.connexion}
-              </Link>
-              <Link
-                href="/auth/signup"
-                className="rounded-xl bg-[#0f172a] px-5 py-2.5 text-[15px] font-semibold text-white transition-all hover:bg-[#1e293b] hover:shadow-lg hover:shadow-slate-200 active:scale-95"
-              >
-                {t.signUp}
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100">
+        <Navbar 
+            logo={{
+            url: "/",
+            src: "/redraft-logo.svg",
+            alt: "Redraft.AI",
+            title: "Redraft.AI",
+            component: <Logo className="w-8 h-8" />
+          }}
+          menu={[
+            { title: t.productNav, url: "#features" },
+            { title: t.aboutNav, url: "#gallery" },
+          ]}
+          auth={{
+            login: { text: t.connexion, url: "/auth/login" },
+            signup: { text: t.signUp, url: "/auth/signup" }
+          }}
+          mobileExtraLinks={[
+            { name: t.documentation, url: "#" },
+            { name: t.community, url: "#" },
+          ]}
+          onLanguageChange={setLanguage}
+        />
+      </div>
 
       {/* ═══════════════ HERO ═══════════════ */}
       <section className="px-4 pt-24 pb-20 md:pt-32 md:pb-28 md:px-8 relative overflow-hidden">
