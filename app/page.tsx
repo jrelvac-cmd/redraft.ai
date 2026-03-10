@@ -83,7 +83,7 @@ const RotatingText = ({ words }: { words: string[] }) => {
           animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
           exit={{ y: -20, opacity: 0, filter: "blur(5px)" }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="absolute top-0 left-0 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent pb-2 whitespace-nowrap"
+          className="absolute top-0 left-0 bg-gradient-to-r from-blue-200 to-indigo-200 bg-clip-text text-transparent pb-2 whitespace-nowrap"
         >
           {words[index]}
         </motion.span>
@@ -155,10 +155,15 @@ export default function Home() {
 
       {/* ═══════════════ HERO ═══════════════ */}
       <section className="px-4 pt-24 pb-20 md:pt-32 md:pb-28 md:px-8 relative overflow-hidden">
-        {/* Background Gradients */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-blue-50/50 rounded-[100%] blur-3xl -z-10 pointer-events-none opacity-60" />
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: 'url(/coming-soon-bg.jpg)' }}
+        >
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
+        </div>
         
-        <div className="mx-auto max-w-[840px]">
+        <div className="mx-auto max-w-[840px] relative z-10">
           <motion.div
             initial="initial"
             animate="animate"
@@ -166,15 +171,15 @@ export default function Home() {
             className="text-center space-y-8"
           >
             <motion.div variants={fadeInUp} className="flex justify-center">
-              <span className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50/50 px-4 py-1.5 text-sm font-medium text-blue-700 backdrop-blur-sm">
-                <Sparkles className="h-3.5 w-3.5 fill-blue-700" />
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm font-medium text-white backdrop-blur-md shadow-lg">
+                <Sparkles className="h-3.5 w-3.5 fill-white text-white" />
                 {t.powereredBy}
               </span>
             </motion.div>
 
             <motion.h1
               variants={fadeInUp}
-              className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.05] text-slate-900"
+              className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.05] text-white drop-shadow-lg"
             >
               {language === "fr" ? "Créez " : "Build "}
               <RotatingText words={rotatingWords} />
@@ -188,20 +193,20 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="mt-14 relative z-10"
           >
-            <div className="rounded-3xl border border-slate-200 bg-white/80 backdrop-blur-xl p-3 shadow-2xl shadow-slate-200/40 ring-4 ring-slate-50/50">
+            <div className="rounded-3xl border border-white/20 bg-white/10 backdrop-blur-xl p-3 shadow-2xl shadow-black/20 ring-1 ring-white/20">
               <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder={t.heroPlaceholder}
-                className="w-full h-32 sm:h-36 px-5 py-4 resize-none focus:outline-none text-lg text-slate-900 placeholder-slate-400 rounded-2xl bg-transparent"
+                className="w-full h-32 sm:h-36 px-5 py-4 resize-none focus:outline-none text-lg text-white placeholder-white/60 rounded-2xl bg-transparent"
               />
               <div className="flex items-center justify-between px-3 pb-2 pt-2">
                 <div className="flex items-center gap-2">
-                  <button className="flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors">
+                  <button className="flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-2 text-sm font-medium text-white hover:bg-white/10 transition-colors">
                     <Upload className="h-4 w-4" />
                     {t.heroUpload}
                   </button>
-                  <button className="flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors">
+                  <button className="flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-2 text-sm font-medium text-white hover:bg-white/10 transition-colors">
                     <Wand2 className="h-4 w-4" />
                     {t.heroGoAI}
                   </button>
@@ -209,7 +214,7 @@ export default function Home() {
                 <button
                   onClick={handleStart}
                   disabled={isLoading}
-                  className="flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-2.5 text-sm font-bold text-white transition-all hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-200 disabled:opacity-60 active:scale-95"
+                  className="flex items-center gap-2 rounded-xl bg-white px-6 py-2.5 text-sm font-bold text-[#0f172a] transition-all hover:bg-slate-100 hover:shadow-lg hover:shadow-white/20 disabled:opacity-60 active:scale-95"
                 >
                   {t.heroSubmit}
                   <ArrowRight className="h-4 w-4" />
