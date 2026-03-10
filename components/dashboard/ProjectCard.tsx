@@ -27,10 +27,10 @@ export function ProjectCard({
   onExport,
 }: ProjectCardProps) {
   const statusColors = {
-    draft: "bg-gray-500/10 text-gray-600",
-    preview: "bg-blue-500/10 text-blue-600",
-    unlocked: "bg-green-500/10 text-green-600",
-    published: "bg-purple-500/10 text-purple-600",
+    draft: "bg-stone-500/10 text-stone-600",
+    preview: "bg-amber-500/10 text-amber-700",
+    unlocked: "bg-emerald-500/10 text-emerald-700",
+    published: "bg-orange-500/10 text-orange-700",
   };
 
   const statusLabels = {

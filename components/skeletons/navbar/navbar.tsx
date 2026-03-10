@@ -213,10 +213,10 @@ export default function Navbar({
             </Button> */}
 
             {/* Auth Buttons */}
-            <Button asChild variant="ghost" className="text-[15px] font-medium text-slate-600 hover:text-slate-900 transition-colors">
+            <Button asChild variant="ghost" className="text-[15px] font-medium text-stone-600 hover:text-stone-900 transition-colors">
               <a href={auth.login.url}>{auth.login.text}</a>
             </Button>
-            <Button asChild className="rounded-xl bg-[#0f172a] px-5 py-2.5 text-[15px] font-semibold text-white transition-all hover:bg-[#1e293b] hover:shadow-lg hover:shadow-slate-200 active:scale-95">
+            <Button asChild className="rounded-xl bg-[#451a03] px-5 py-2.5 text-[15px] font-semibold text-white transition-all hover:bg-[#78350f] hover:shadow-lg hover:shadow-amber-200 active:scale-95">
               <a href={auth.signup.url}>{auth.signup.text}</a>
             </Button>
           </div>
