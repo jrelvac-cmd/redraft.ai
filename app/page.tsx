@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import {
   ArrowRight,
@@ -16,7 +16,7 @@ import {
   Quote,
 } from "lucide-react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { LanguageToggle } from "@/components/language-toggle";
 import { translations } from "@/lib/translations";
 
@@ -63,6 +63,36 @@ const Logo = ({ className = "w-9 h-9" }: { className?: string }) => (
   </svg>
 );
 
+// Rotating text component
+const RotatingText = ({ words }: { words: string[] }) => {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % words.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [words.length]);
+
+  return (
+    <span className="relative inline-block w-[7ch] sm:w-[8ch] md:w-[9ch] text-left">
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={index}
+          initial={{ y: 20, opacity: 0, filter: "blur(5px)" }}
+          animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+          exit={{ y: -20, opacity: 0, filter: "blur(5px)" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="absolute top-0 left-0 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent pb-2 whitespace-nowrap"
+        >
+          {words[index]}
+        </motion.span>
+      </AnimatePresence>
+      <span className="invisible">{words[0]}</span> {/* Placeholder for width */}
+    </span>
+  );
+};
+
 export default function Home() {
   const [description, setDescription] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -70,6 +100,11 @@ export default function Home() {
   const router = useRouter();
 
   const t = translations[language];
+
+  // Rotating words based on language
+  const rotatingWords = language === "fr" 
+    ? ["plus vite", "plus beau", "pour vendre"]
+    : ["faster", "beautiful", "to sell"];
 
   const handleStart = () => {
     setIsLoading(true);
@@ -141,9 +176,8 @@ export default function Home() {
               variants={fadeInUp}
               className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.05] text-slate-900"
             >
-              {t.tagline}<br />
-              <span className="text-slate-400">{t.tagline2}</span><br />
-              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent pb-2">{t.tagline3}</span>
+              {language === "fr" ? "Créez " : "Build "}
+              <RotatingText words={rotatingWords} />
             </motion.h1>
           </motion.div>
 

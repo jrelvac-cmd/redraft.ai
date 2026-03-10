@@ -83,6 +83,27 @@
 
 /* Glow Button Styles */
 @layer components {
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 8s ease infinite;
+  }
+
   .glow-btn {
     @apply relative inline-flex items-center justify-center px-6 py-3 font-medium text-[#0f172a] transition-all duration-200 rounded-lg;
     background: rgba(255, 255, 255, 0.9);
