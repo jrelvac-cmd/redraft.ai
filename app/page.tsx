@@ -173,45 +173,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════════ 3 STEPS ═══════════════ */}
-      <section className="px-4 py-20 md:px-8 border-y border-slate-100 bg-slate-50/30">
-        <div className="mx-auto max-w-[1100px]">
-          <motion.div
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
-          >
-            {[
-              { step: t.step1Title, desc: t.step1Desc, icon: FileText, color: "bg-blue-100 text-blue-700" },
-              { step: t.step2Title, desc: t.step2Desc, icon: Code, color: "bg-emerald-100 text-emerald-700" },
-              { step: t.step3Title, desc: t.step3Desc, icon: Zap, color: "bg-amber-100 text-amber-700" },
-            ].map((item, i) => (
-              <motion.div
-                key={item.step}
-                variants={fadeInUp}
-                className="relative group"
-              >
-                <div className="rounded-3xl border border-slate-200 bg-white p-8 transition-all duration-300 hover:shadow-xl hover:shadow-slate-200/40 hover:-translate-y-1">
-                  <div className={`mb-6 flex h-14 w-14 items-center justify-center rounded-2xl ${item.color}`}>
-                    <item.icon className="h-7 w-7" />
-                  </div>
-                  <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">{item.step}</p>
-                  <p className="text-xl font-bold text-slate-900 leading-snug">{item.desc}</p>
-                </div>
-                {/* Connector Line (Desktop) */}
-                {i < 2 && (
-                  <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-[2px] bg-slate-200 -translate-y-1/2 z-0" />
-                )}
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
 
       {/* ═══════════════ TAGLINE ═══════════════ */}
-      <section className="px-4 py-24 md:py-32 md:px-8 bg-white">
+      <section className="px-4 py-16 md:py-24 md:px-8 bg-white">
         <div className="mx-auto max-w-[1200px] text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
