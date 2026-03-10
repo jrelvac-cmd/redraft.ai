@@ -21,6 +21,23 @@ import Navbar from "@/components/skeletons/navbar/navbar";
 import { Logo } from "@/components/logo";
 import { translations } from "@/lib/translations";
 
+type Language = "fr" | "en";
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 30 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+};
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
 // Rotating text component
 const RotatingText = ({ words, colorClass = "from-amber-600 to-orange-600" }: { words: string[], colorClass?: string }) => {
   const [index, setIndex] = useState(0);
@@ -75,7 +92,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-white text-[#0f172a] overflow-x-hidden font-sans selection:bg-blue-100 selection:text-blue-900">
+    <main className="min-h-screen bg-[#fafaf9] text-[#1c1917] overflow-x-hidden font-sans selection:bg-amber-100 selection:text-amber-900">
 
       {/* ═══════════════ NAVBAR ═══════════════ */}
       <div className="sticky top-0 z-50 bg-[#fafaf9]/80 backdrop-blur-xl border-b border-stone-200">
