@@ -24,6 +24,7 @@ export const translations = {
     heroUpload: "Upload",
     heroGoAI: "Go AI",
     heroSubmit: "Générer",
+    heroMainTitle: "Générez votre landing page en 30 secondes",
 
     // 3 Steps
     step1Title: "Étape 1",
@@ -158,6 +159,7 @@ export const translations = {
     heroUpload: "Upload",
     heroGoAI: "Go AI",
     heroSubmit: "Generate",
+    heroMainTitle: "Generate your landing page in 30 seconds",
 
     // 3 Steps
     step1Title: "Step 1",

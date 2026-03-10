@@ -64,7 +64,7 @@ const Logo = ({ className = "w-9 h-9" }: { className?: string }) => (
 );
 
 // Rotating text component
-const RotatingText = ({ words }: { words: string[] }) => {
+const RotatingText = ({ words, colorClass = "from-blue-200 to-indigo-200" }: { words: string[], colorClass?: string }) => {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -75,7 +75,7 @@ const RotatingText = ({ words }: { words: string[] }) => {
   }, [words.length]);
 
   return (
-    <span className="relative inline-block w-[7ch] sm:w-[8ch] md:w-[9ch] text-left">
+    <span className="relative inline-block w-[7ch] sm:w-[8ch] md:w-[9ch] text-left align-bottom">
       <AnimatePresence mode="wait">
         <motion.span
           key={index}
@@ -83,7 +83,7 @@ const RotatingText = ({ words }: { words: string[] }) => {
           animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
           exit={{ y: -20, opacity: 0, filter: "blur(5px)" }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="absolute top-0 left-0 bg-gradient-to-r from-blue-200 to-indigo-200 bg-clip-text text-transparent pb-2 whitespace-nowrap"
+          className={`absolute top-0 left-0 bg-gradient-to-r ${colorClass} bg-clip-text text-transparent pb-2 whitespace-nowrap`}
         >
           {words[index]}
         </motion.span>
@@ -181,8 +181,7 @@ export default function Home() {
               variants={fadeInUp}
               className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.05] text-white drop-shadow-lg"
             >
-              {language === "fr" ? "Créez " : "Build "}
-              <RotatingText words={rotatingWords} />
+              {t.heroMainTitle}
             </motion.h1>
           </motion.div>
 
@@ -259,6 +258,21 @@ export default function Home() {
               </motion.div>
             ))}
           </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════════ TAGLINE ═══════════════ */}
+      <section className="px-4 py-24 md:py-32 md:px-8 bg-white">
+        <div className="mx-auto max-w-[1200px] text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-slate-900 leading-tight"
+          >
+            {language === "fr" ? "Créez " : "Build "}
+            <RotatingText words={rotatingWords} colorClass="from-blue-600 to-indigo-600" />
+          </motion.h2>
         </div>
       </section>
 
