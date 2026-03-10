@@ -387,20 +387,129 @@ export default function Home() {
             variants={staggerContainer}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {[1, 2, 3, 4, 5, 6].map((i) => (
-              <motion.div
-                key={i}
-                variants={fadeInUp}
-                className="group aspect-[4/3] rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-              >
-                <div className="w-full h-full bg-slate-100 flex items-center justify-center relative">
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="text-center space-y-3 relative z-10 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    <div className="bg-white p-4 rounded-2xl shadow-lg">
-                      <Layers className="h-8 w-8 mx-auto text-slate-400" />
+            {[
+              {
+                id: 1,
+                title: "Dark Mode SaaS",
+                component: (
+                  <div className="w-full h-full bg-slate-900 p-6 flex flex-col justify-center relative overflow-hidden group-hover:scale-105 transition-transform duration-500">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/20 rounded-full blur-3xl" />
+                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl" />
+                    <div className="relative z-10 space-y-3">
+                      <div className="w-8 h-8 rounded-lg bg-indigo-500 flex items-center justify-center">
+                        <Zap className="w-5 h-5 text-white" />
+                      </div>
+                      <h3 className="text-white font-bold text-xl">Nexus AI</h3>
+                      <p className="text-slate-400 text-xs">Automate your workflow with AI.</p>
+                      <button className="w-fit px-4 py-1.5 rounded-full bg-indigo-600 text-white text-xs font-medium mt-2">Get Started</button>
                     </div>
-                    <p className="text-sm font-medium text-white opacity-0 group-hover:opacity-100 transition-opacity delay-100">Projet SaaS {i}</p>
                   </div>
+                )
+              },
+              {
+                id: 2,
+                title: "Minimalist Blog",
+                component: (
+                  <div className="w-full h-full bg-[#f8f9fa] p-6 flex flex-col justify-between group-hover:scale-105 transition-transform duration-500">
+                    <div className="space-y-4">
+                      <div className="w-full h-24 bg-white rounded-xl border border-slate-100 shadow-sm" />
+                      <div className="space-y-2">
+                        <div className="w-3/4 h-4 bg-slate-200 rounded" />
+                        <div className="w-1/2 h-3 bg-slate-100 rounded" />
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-full bg-slate-200" />
+                      <div className="w-20 h-2 bg-slate-100 rounded" />
+                    </div>
+                  </div>
+                )
+              },
+              {
+                id: 3,
+                title: "E-commerce Store",
+                component: (
+                  <div className="w-full h-full bg-white p-4 flex flex-col items-center justify-center gap-4 group-hover:scale-105 transition-transform duration-500 border border-slate-100">
+                    <div className="relative w-32 h-32 bg-orange-50 rounded-2xl flex items-center justify-center">
+                      <Star className="w-12 h-12 text-orange-400" />
+                      <div className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">SALE</div>
+                    </div>
+                    <div className="text-center">
+                      <p className="font-bold text-slate-900">Premium Kit</p>
+                      <p className="text-orange-500 font-bold">$49.00</p>
+                    </div>
+                    <button className="w-full py-2 bg-slate-900 text-white text-xs font-bold rounded-lg">Add to Cart</button>
+                  </div>
+                )
+              },
+              {
+                id: 4,
+                title: "Mobile App Landing",
+                component: (
+                  <div className="w-full h-full bg-gradient-to-br from-purple-600 to-pink-600 p-6 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                    <div className="w-32 h-48 bg-white rounded-[2rem] p-3 shadow-2xl transform rotate-[-6deg] group-hover:rotate-0 transition-transform duration-300">
+                      <div className="w-full h-full bg-slate-50 rounded-[1.5rem] flex flex-col items-center pt-4 gap-2">
+                         <div className="w-8 h-8 rounded-full bg-pink-100" />
+                         <div className="w-16 h-2 bg-slate-200 rounded" />
+                         <div className="w-20 h-20 bg-pink-50 rounded-xl mt-2" />
+                      </div>
+                    </div>
+                  </div>
+                )
+              },
+              {
+                id: 5,
+                title: "Corporate Dashboard",
+                component: (
+                  <div className="w-full h-full bg-slate-50 p-6 flex flex-col gap-3 group-hover:scale-105 transition-transform duration-500">
+                    <div className="flex gap-3">
+                      <div className="w-1/3 h-20 bg-white rounded-xl shadow-sm border border-slate-100 p-3">
+                        <div className="w-6 h-6 bg-blue-100 rounded-full mb-2" />
+                        <div className="w-8 h-2 bg-slate-200 rounded" />
+                      </div>
+                      <div className="w-2/3 h-20 bg-white rounded-xl shadow-sm border border-slate-100 p-3">
+                        <div className="flex gap-1 h-full items-end">
+                           <div className="flex-1 bg-blue-500 h-[40%] rounded-t-sm" />
+                           <div className="flex-1 bg-blue-300 h-[70%] rounded-t-sm" />
+                           <div className="flex-1 bg-blue-600 h-[50%] rounded-t-sm" />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex-1 bg-white rounded-xl shadow-sm border border-slate-100 p-3 space-y-2">
+                      <div className="w-full h-2 bg-slate-100 rounded" />
+                      <div className="w-full h-2 bg-slate-100 rounded" />
+                      <div className="w-2/3 h-2 bg-slate-100 rounded" />
+                    </div>
+                  </div>
+                )
+              },
+              {
+                id: 6,
+                title: "Creative Portfolio",
+                component: (
+                  <div className="w-full h-full bg-[#1a1a1a] p-6 flex flex-col justify-center text-center group-hover:scale-105 transition-transform duration-500">
+                    <p className="text-[#ccff00] font-mono text-xs mb-2">● AVAILABLE FOR WORK</p>
+                    <h3 className="text-white text-3xl font-bold leading-none mb-4 font-serif italic">Digital<br/>Designer</h3>
+                    <div className="flex justify-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-white/20" />
+                      <div className="w-2 h-2 rounded-full bg-white/20" />
+                      <div className="w-2 h-2 rounded-full bg-white" />
+                    </div>
+                  </div>
+                )
+              }
+            ].map((item) => (
+              <motion.div
+                key={item.id}
+                variants={fadeInUp}
+                className="group aspect-[4/3] rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative"
+              >
+                {item.component}
+                
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
+                   <p className="text-white font-bold text-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                     {item.title}
+                   </p>
                 </div>
               </motion.div>
             ))}
