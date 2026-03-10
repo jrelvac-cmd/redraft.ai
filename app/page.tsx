@@ -19,6 +19,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/skeletons/navbar/navbar";
 import { Logo } from "@/components/logo";
+import { translations } from "@/lib/translations";
 
 // Rotating text component
 const RotatingText = ({ words, colorClass = "from-amber-600 to-orange-600" }: { words: string[], colorClass?: string }) => {
