@@ -3,7 +3,10 @@ export const translations = {
     // Navbar
     connexion: "Connexion",
     commencer: "Commencer",
-    
+    productNav: "Produit",
+    aboutNav: "À propos",
+    signUp: "S'inscrire",
+
     // Coming Soon
     comingSoonTitle: "Coming Soon",
     comingSoonDesc: "Des sites web SaaS ultra-rapides, optimisés pour vendre. Prêts en minutes, pas en semaines.",
@@ -15,73 +18,44 @@ export const translations = {
     notifySuccess: "Merci ! Nous vous notifierons bientôt 🎉",
     notifying: "En cours...",
     comingSoonCopyright: "© 2026 Redraft.AI. Tous droits réservés.",
-    
-    // Badge
-    powereredBy: "Propulsé par Claude 3.5 Sonnet + GPT-4o",
-    forFounders: "Pour fondateurs SaaS et équipes produit",
-    
+
     // Hero
-    heroTitle: "Prompt vers\ncode landing\nprêt à shipper",
-    heroDescription: "Redraft transforme votre idée en landing Next.js/Tailwind performante. Répondez au tunnel intelligent, éditez visuellement, exportez du code propre.",
-    createFirstLanding: "Créer ma première landing",
-    seeDemo: "Voir la démo",
-    noLockIn: "No lock-in. Vous possédez 100% du code.",
-    
-    // Preview section
-    questionsAI: "Questions IA",
-    heroGenerated: "Hero généré",
-    livePreview: "Live Preview",
-    
-    // Textarea
-    describeSaaS: "Décrivez votre SaaS",
-    exampleDescription: "Ex: Un outil qui transforme les réunions Zoom en résumés actionnables pour les managers...",
-    createLandingPage: "Créer ma landing page",
-    pricing: "Gratuit pour voir le Hero • 19€ pour débloquer la page complète",
-    
-    // Sections titles
-    promptToSitemap: "Prompt to Sitemap",
-    sitemapDescription: "Définissez les pages, sections et messages clés de votre site en quelques secondes.",
-    mapStructure: "Mappez la structure",
-    mapStructureDesc: "Reliez proposition de valeur, sections et parcours utilisateur sans friction.",
-    preciseScoping: "Scopage plus précis",
-    preciseScopingDesc: "Évitez le scope creep et démarrez avec une architecture claire pour le client.",
-    
-    sitemapToWireframe: "Sitemap to Wireframe",
-    wireframeDescription: "Générez des wireframes utilisables immédiatement avec de vraies sections de landing.",
-    instantDraft: "Draft instantané",
-    instantDraftDesc: "Un premier jet concret dès la première minute pour accélérer vos validations.",
-    enhancedEditing: "Édition augmentée",
-    enhancedEditingDesc: "Ajustez le copywriting et les blocs en direct selon vos retours équipe/client.",
-    
-    wireframeToStyleGuide: "Wireframe to Style Guide",
-    styleGuideDescription: "Définissez rapidement un design system cohérent pour finaliser votre landing sans ralentir.",
-    colors: "Couleurs",
-    colorsDesc: "Extraction auto depuis vos assets pour garder une identité cohérente.",
-    typography: "Typographie",
-    typographyDesc: "Hiérarchie lisible et équilibrée pour conversion + clarté produit.",
-    spacing: "Spacing",
-    spacingDesc: "Rythme visuel propre, prêt à coder sans retouches interminables.",
-    
-    exportToTools: "Export to Figma, React & Code",
-    exportDescription: "Utilisez vos outils habituels. Copiez-collez les blocs là où vous travaillez déjà.",
-    copyToFigma: "Copy to Figma",
-    copyToFigmaDesc: "Passez de l'idéation au design final sans ressaisie.",
-    copyToReact: "Copy to React",
-    copyToReactDesc: "Export Next.js/TypeScript/Tailwind prêt pour la prod.",
-    copyToWebflow: "Copy to Webflow",
-    copyToWebflowDesc: "Gardez la flexibilité de vos workflows no-code/low-code.",
-    
-    testimonials: "Ils gagnent du temps chaque semaine",
-    testimonial1: "On a réduit notre cycle landing de 2 semaines à 2 jours.",
-    testimonial2: "Le copy IA est déjà exploitable dès la première génération.",
-    testimonial3: "Le code exporté est propre, lisible et facile à maintenir.",
-    
-    // CTA final
-    tryRedraft: "Try Redraft.ai sur votre prochain lancement",
-    tryDescription: "De l'idée au code Next.js prêt à shipper en quelques minutes.",
-    startFree: "Start free",
-    seeExample: "Voir un exemple de code",
-    
+    heroPlaceholder: "Décrivez votre SaaS, votre entreprise ou votre idée...",
+    heroUpload: "Upload",
+    heroGoAI: "Go AI",
+    heroSubmit: "Générer",
+
+    // 3 Steps
+    step1Title: "Étape 1",
+    step1Desc: "Décrivez votre SaaS ou votre entreprise",
+    step2Title: "Étape 2",
+    step2Desc: "Exportez votre site web",
+    step3Title: "Étape 3",
+    step3Desc: "Vendez et convertissez",
+
+    // Tagline
+    tagline: "Créez plus vite,",
+    tagline2: "plus beau,",
+    tagline3: "pour vendre.",
+
+    // Features
+    featuresTitle: "Features",
+    feature1Title: "Créez un site web entier en quelques minutes",
+    feature1Desc: "Un prompt, des images de référence… et c'est tout. L'IA fait le reste.",
+    feature2Title: "Des modifications accessibles",
+    feature2Desc: "Modifiez chaque section, chaque texte, chaque couleur. Sans coder.",
+    feature3Title: "Export en React",
+    feature3Desc: "Code Next.js/Tailwind propre, prêt à déployer en production.",
+
+    // Gallery
+    galleryTitle: "Nos réalisations",
+    galleryDesc: "Découvrez des exemples de sites générés par Redraft.AI",
+
+    // CTA
+    ctaTitle: "Prêt à créer votre site ?",
+    ctaDesc: "Essayez Redraft.AI gratuitement et créez votre premier site en quelques minutes.",
+    ctaButton: "Essaie gratuitement",
+
     // Footer
     productDesc: "Générateur de landing pages SaaS haute performance avec export de code propre.",
     product: "Produit",
@@ -96,12 +70,67 @@ export const translations = {
     privacy: "Confidentialité",
     terms: "Conditions",
     copyright: "© 2026 Redraft.AI. Tous droits réservés.",
+
+    // Legacy (kept for Coming Soon compatibility)
+    powereredBy: "Propulsé par Claude 3.5 Sonnet + GPT-4o",
+    forFounders: "Pour fondateurs SaaS et équipes produit",
+    heroTitle: "Prompt vers\ncode landing\nprêt à shipper",
+    heroDescription: "Redraft transforme votre idée en landing Next.js/Tailwind performante.",
+    createFirstLanding: "Créer ma première landing",
+    seeDemo: "Voir la démo",
+    noLockIn: "No lock-in. Vous possédez 100% du code.",
+    questionsAI: "Questions IA",
+    heroGenerated: "Hero généré",
+    livePreview: "Live Preview",
+    describeSaaS: "Décrivez votre SaaS",
+    exampleDescription: "Ex: Un outil qui transforme les réunions Zoom en résumés actionnables...",
+    createLandingPage: "Créer ma landing page",
+    pricing: "Gratuit pour voir le Hero • 19€ pour débloquer la page complète",
+    promptToSitemap: "Prompt to Sitemap",
+    sitemapDescription: "Définissez les pages, sections et messages clés.",
+    mapStructure: "Mappez la structure",
+    mapStructureDesc: "Reliez proposition de valeur et parcours utilisateur.",
+    preciseScoping: "Scopage précis",
+    preciseScopingDesc: "Architecture claire dès le départ.",
+    sitemapToWireframe: "Sitemap to Wireframe",
+    wireframeDescription: "Générez des wireframes utilisables immédiatement.",
+    instantDraft: "Draft instantané",
+    instantDraftDesc: "Un premier jet dès la première minute.",
+    enhancedEditing: "Édition augmentée",
+    enhancedEditingDesc: "Ajustez le copywriting en direct.",
+    wireframeToStyleGuide: "Wireframe to Style Guide",
+    styleGuideDescription: "Design system cohérent rapidement.",
+    colors: "Couleurs",
+    colorsDesc: "Extraction auto depuis vos assets.",
+    typography: "Typographie",
+    typographyDesc: "Hiérarchie lisible et équilibrée.",
+    spacing: "Spacing",
+    spacingDesc: "Rythme visuel propre.",
+    exportToTools: "Export to Figma, React & Code",
+    exportDescription: "Copiez-collez les blocs là où vous travaillez.",
+    copyToFigma: "Copy to Figma",
+    copyToFigmaDesc: "De l'idéation au design final.",
+    copyToReact: "Copy to React",
+    copyToReactDesc: "Export Next.js prêt pour la prod.",
+    copyToWebflow: "Copy to Webflow",
+    copyToWebflowDesc: "Flexibilité no-code/low-code.",
+    testimonials: "Ils gagnent du temps chaque semaine",
+    testimonial1: "On a réduit notre cycle landing de 2 semaines à 2 jours.",
+    testimonial2: "Le copy IA est déjà exploitable dès la première génération.",
+    testimonial3: "Le code exporté est propre, lisible et facile à maintenir.",
+    tryRedraft: "Try Redraft.ai",
+    tryDescription: "De l'idée au code en quelques minutes.",
+    startFree: "Start free",
+    seeExample: "Voir un exemple",
   },
   en: {
     // Navbar
     connexion: "Login",
     commencer: "Get Started",
-    
+    productNav: "Product",
+    aboutNav: "About",
+    signUp: "Sign Up",
+
     // Coming Soon
     comingSoonTitle: "Coming Soon",
     comingSoonDesc: "Your next SaaS website, built to convert. Ready in minutes. Not days.",
@@ -113,73 +142,44 @@ export const translations = {
     notifySuccess: "Thanks! We'll notify you soon 🎉",
     notifying: "Loading...",
     comingSoonCopyright: "© 2026 Redraft.AI. All rights reserved.",
-    
-    // Badge
-    powereredBy: "Powered by Claude 3.5 Sonnet + GPT-4o",
-    forFounders: "For SaaS founders and product teams",
-    
+
     // Hero
-    heroTitle: "Prompt to\nshippable\nlanding code",
-    heroDescription: "Redraft transforms your idea into a high-performance Next.js/Tailwind landing page. Answer smart questions, edit visually, export clean code.",
-    createFirstLanding: "Create my first landing",
-    seeDemo: "See demo",
-    noLockIn: "No lock-in. You own 100% of the code.",
-    
-    // Preview section
-    questionsAI: "AI Questions",
-    heroGenerated: "Generated Hero",
-    livePreview: "Live Preview",
-    
-    // Textarea
-    describeSaaS: "Describe your SaaS",
-    exampleDescription: "Ex: A tool that turns Zoom meetings into actionable summaries for managers...",
-    createLandingPage: "Create my landing page",
-    pricing: "Free to see the Hero • $19 to unlock the full page",
-    
-    // Sections titles
-    promptToSitemap: "Prompt to Sitemap",
-    sitemapDescription: "Define your site's pages, sections and key messages in seconds.",
-    mapStructure: "Map the structure",
-    mapStructureDesc: "Connect value proposition, sections and user journey without friction.",
-    preciseScoping: "Precise scoping",
-    preciseScopingDesc: "Avoid scope creep and start with clear architecture for your client.",
-    
-    sitemapToWireframe: "Sitemap to Wireframe",
-    wireframeDescription: "Generate immediately usable wireframes with real landing sections.",
-    instantDraft: "Instant draft",
-    instantDraftDesc: "A concrete first version from minute one to speed up your validations.",
-    enhancedEditing: "Enhanced editing",
-    enhancedEditingDesc: "Adjust copy and blocks live based on your team's feedback.",
-    
-    wireframeToStyleGuide: "Wireframe to Style Guide",
-    styleGuideDescription: "Quickly define a cohesive design system to finalize your landing without slowdown.",
-    colors: "Colors",
-    colorsDesc: "Auto extraction from your assets to maintain consistent identity.",
-    typography: "Typography",
-    typographyDesc: "Readable and balanced hierarchy for conversion + product clarity.",
-    spacing: "Spacing",
-    spacingDesc: "Clean visual rhythm, ready to code without endless tweaks.",
-    
-    exportToTools: "Export to Figma, React & Code",
-    exportDescription: "Use your favorite tools. Copy-paste blocks where you already work.",
-    copyToFigma: "Copy to Figma",
-    copyToFigmaDesc: "Go from ideation to final design without re-entry.",
-    copyToReact: "Copy to React",
-    copyToReactDesc: "Export Next.js/TypeScript/Tailwind production-ready.",
-    copyToWebflow: "Copy to Webflow",
-    copyToWebflowDesc: "Keep the flexibility of your no-code/low-code workflows.",
-    
-    testimonials: "They save time every week",
-    testimonial1: "We cut our landing cycle from 2 weeks to 2 days.",
-    testimonial2: "The AI copy is already usable from the first generation.",
-    testimonial3: "The exported code is clean, readable and easy to maintain.",
-    
-    // CTA final
-    tryRedraft: "Try Redraft.ai on your next launch",
-    tryDescription: "From idea to production-ready Next.js code in minutes.",
-    startFree: "Start free",
-    seeExample: "See code example",
-    
+    heroPlaceholder: "Describe your SaaS, your business or your idea...",
+    heroUpload: "Upload",
+    heroGoAI: "Go AI",
+    heroSubmit: "Generate",
+
+    // 3 Steps
+    step1Title: "Step 1",
+    step1Desc: "Describe your SaaS or business",
+    step2Title: "Step 2",
+    step2Desc: "Export your website",
+    step3Title: "Step 3",
+    step3Desc: "Sell and convert",
+
+    // Tagline
+    tagline: "Build faster,",
+    tagline2: "more beautiful,",
+    tagline3: "to sell.",
+
+    // Features
+    featuresTitle: "Features",
+    feature1Title: "Build an entire website in minutes",
+    feature1Desc: "A prompt, reference images… and that's it. AI does the rest.",
+    feature2Title: "Easy modifications",
+    feature2Desc: "Edit every section, every text, every color. No coding needed.",
+    feature3Title: "Export to React",
+    feature3Desc: "Clean Next.js/Tailwind code, production-ready to deploy.",
+
+    // Gallery
+    galleryTitle: "Our work",
+    galleryDesc: "Explore examples of websites generated by Redraft.AI",
+
+    // CTA
+    ctaTitle: "Ready to build your site?",
+    ctaDesc: "Try Redraft.AI for free and create your first site in minutes.",
+    ctaButton: "Try for free",
+
     // Footer
     productDesc: "High-performance SaaS landing page generator with clean code export.",
     product: "Product",
@@ -194,5 +194,57 @@ export const translations = {
     privacy: "Privacy",
     terms: "Terms",
     copyright: "© 2026 Redraft.AI. All rights reserved.",
+
+    // Legacy
+    powereredBy: "Powered by Claude 3.5 Sonnet + GPT-4o",
+    forFounders: "For SaaS founders and product teams",
+    heroTitle: "Prompt to\nshippable\nlanding code",
+    heroDescription: "Redraft transforms your idea into a high-performance Next.js/Tailwind landing page.",
+    createFirstLanding: "Create my first landing",
+    seeDemo: "See demo",
+    noLockIn: "No lock-in. You own 100% of the code.",
+    questionsAI: "AI Questions",
+    heroGenerated: "Generated Hero",
+    livePreview: "Live Preview",
+    describeSaaS: "Describe your SaaS",
+    exampleDescription: "Ex: A tool that turns Zoom meetings into actionable summaries...",
+    createLandingPage: "Create my landing page",
+    pricing: "Free to see the Hero • $19 to unlock the full page",
+    promptToSitemap: "Prompt to Sitemap",
+    sitemapDescription: "Define your site's pages, sections and key messages.",
+    mapStructure: "Map the structure",
+    mapStructureDesc: "Connect value proposition and user journey.",
+    preciseScoping: "Precise scoping",
+    preciseScopingDesc: "Clear architecture from the start.",
+    sitemapToWireframe: "Sitemap to Wireframe",
+    wireframeDescription: "Generate immediately usable wireframes.",
+    instantDraft: "Instant draft",
+    instantDraftDesc: "A concrete first version from minute one.",
+    enhancedEditing: "Enhanced editing",
+    enhancedEditingDesc: "Adjust copy and blocks live.",
+    wireframeToStyleGuide: "Wireframe to Style Guide",
+    styleGuideDescription: "Quickly define a cohesive design system.",
+    colors: "Colors",
+    colorsDesc: "Auto extraction from your assets.",
+    typography: "Typography",
+    typographyDesc: "Readable and balanced hierarchy.",
+    spacing: "Spacing",
+    spacingDesc: "Clean visual rhythm.",
+    exportToTools: "Export to Figma, React & Code",
+    exportDescription: "Copy-paste blocks where you already work.",
+    copyToFigma: "Copy to Figma",
+    copyToFigmaDesc: "From ideation to final design.",
+    copyToReact: "Copy to React",
+    copyToReactDesc: "Export Next.js production-ready.",
+    copyToWebflow: "Copy to Webflow",
+    copyToWebflowDesc: "Keep your no-code/low-code flexibility.",
+    testimonials: "They save time every week",
+    testimonial1: "We cut our landing cycle from 2 weeks to 2 days.",
+    testimonial2: "The AI copy is already usable from the first generation.",
+    testimonial3: "The exported code is clean, readable and easy to maintain.",
+    tryRedraft: "Try Redraft.ai",
+    tryDescription: "From idea to production-ready code in minutes.",
+    startFree: "Start free",
+    seeExample: "See code example",
   },
 };
